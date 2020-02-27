@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, Button, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import { SearchInput } from "@components";
+import { SearchInput, SwiperComponent } from "@/components";
 
 import "./index.scss";
 
@@ -70,8 +70,9 @@ class Index extends Component {
       counterStore: { counter }
     } = this.props;
     return (
-      <View className='index-container'>
+      <View className='zz-container'>
         <SearchInput placeholder='搜索您想就诊的医生或科室' disabled onClick={this.onClickSearchInput} />
+        <SwiperComponent />
       </View>
     );
   }

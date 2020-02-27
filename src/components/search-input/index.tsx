@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
 import Taro, { Component } from "@tarojs/taro";
 import { View, Input } from "@tarojs/components";
-import { SearchInput, IconFont } from "@components";
+import { SearchInput, IconFont } from "@/components";
 
 import "./index.scss";
 
