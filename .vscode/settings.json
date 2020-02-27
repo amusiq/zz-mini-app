@@ -1,0 +1,26 @@
+{
+  "editor.tabSize": 4, // tab缩进
+  "prettier.semi": true, // 加分号
+  //   "editor.formatOnSave": true, // 保存格式化
+  "files.autoSave": "onFocusChange", // 修改内容自动更新（防止突然死机忘记保存）
+  "files.eol": "\n", // 回车格式
+  //   "prettier.singleQuote": true, // 使用单引号代替双引号
+  "prettier.trailingComma": "none", // 在对象或数组最后一个元素后面是否加逗号
+  "prettier.printWidth": 120, // 编码长度120个字符
+  "prettier.arrowParens": "always",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript"
+  },
+  "emmet.includeLanguages": {
+    "wxml": "html"
+  },
+  "minapp-vscode.disableAutoConfig": true,
+  "git.enableSmartCommit": true,
+  "todo-tree.tree.showScanModeButton": false,
+  "cSpell.userWords": ["mobx", "tarojs"] //箭头函数参数括号
+}

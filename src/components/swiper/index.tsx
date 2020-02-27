@@ -1,11 +1,9 @@
 import Taro, { Component } from '@tarojs/taro';
 import { Button, Text } from '@tarojs/components';
-import { postcss } from '@utils/style'
-import classNames from 'classnames'
 
 import './index.scss';
 
-export default class Swiper extends Component{
+export default class SwiperComponent extends Component{
     static defaultProps = {
         compStyle: '',
         textStyle: '',

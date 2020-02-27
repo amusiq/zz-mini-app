@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "zz-mini-app",
   "description": "zz mini app",
-  "appid": "touristappid",
+  "appid": "wx255d1cc18d96aadf",
   "setting": {
     "urlCheck": true,
     "es6": false,
