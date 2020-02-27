@@ -61,13 +61,17 @@ class Index extends Component {
     counterStore.incrementAsync();
   };
 
+  onClickSearchInput = () => {
+    console.log('onClickSearchInput')
+  }
+
   render() {
     const {
       counterStore: { counter }
     } = this.props;
     return (
       <View className='index-container'>
-        <SearchInput placeholder='搜索您想就诊的医生或科室' />
+        <SearchInput placeholder='搜索您想就诊的医生或科室' disabled onClick={this.onClickSearchInput} />
       </View>
     );
   }

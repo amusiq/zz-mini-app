@@ -22,7 +22,7 @@ class IconFont extends Component {
   static defaultProps = {
     type: "",
     color: "#b2b2b2",
-    size: 14
+    size: 15
   };
 
   render() {
