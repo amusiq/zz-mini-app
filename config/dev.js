@@ -1,8 +1,11 @@
+const HOST = 'https://dev.distinctclinic.com'
+
 module.exports = {
   env: {
     NODE_ENV: '"development"'
   },
   defineConstants: {
+    HOST: HOST,
   },
   mini: {
     module: {
