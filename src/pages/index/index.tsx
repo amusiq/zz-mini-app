@@ -1,9 +1,10 @@
-import { ComponentType } from 'react'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from '@tarojs/mobx'
+import { ComponentType } from 'react';
+import Taro, { Component, Config } from '@tarojs/taro';
+import { View, Button, Text } from '@tarojs/components';
+import { observer, inject } from '@tarojs/mobx';
+import { SearchInput } from '@components';
 
-import './index.scss'
+import './index.scss';
 
 type PageStateProps = {
   counterStore: {
@@ -65,8 +66,8 @@ class Index extends Component {
   render () {
     const { counterStore: { counter } } = this.props
     return (
-      <View className='index'>
-        首页
+      <View className='index-container'>
+        <SearchInput />
       </View>
     )
   }
