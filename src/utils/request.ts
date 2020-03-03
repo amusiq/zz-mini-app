@@ -357,7 +357,7 @@ class Request {
   }
 
   async getRequestHeader(header) {
-    const language = await config.getLanguage();
+    const language = config.language;
     const newHeader = {
       ...header,
       platform: appConfig.app,
