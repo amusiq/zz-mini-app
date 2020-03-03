@@ -20,18 +20,9 @@ interface Index {
 @inject("homeStore")
 @observer
 class Index extends Component {
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
   config: Config = {
     navigationBarTitleText: "首页"
   };
-
-  componentWillMount() {}
 
   componentWillReact() {
     console.log("componentWillReact");
@@ -41,12 +32,6 @@ class Index extends Component {
     this.init();
     console.log("componentDidMount");
   }
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
 
   onClickSearchInput = () => {
     console.log("onClickSearchInput");
@@ -59,6 +44,14 @@ class Index extends Component {
 
   menuEvent = index => {
     console.log(index);
+  };
+
+  appointmentEvent = () => {
+    console.log("appointmentEvent");
+  };
+
+  selectCityEvent = () => {
+    console.log("selectCityEvent");
   };
 
   render() {
@@ -79,6 +72,7 @@ class Index extends Component {
         icon: imagesConfig.OPTION_OFFER
       }
     ];
+    const cityName = "";
     console.log(banners, "banners");
     return (
       <View className="zz-container home-container">
@@ -104,6 +98,39 @@ class Index extends Component {
               <Text className="options-item__title">{item.title}</Text>
             </View>
           ))}
+        </View>
+        <View className="service">
+          <View className="service-item" onClick={this.appointmentEvent}>
+            <View className="service-item-left">
+              <Image
+                className="service-item__icon"
+                src={imagesConfig.ICON_CONSULT}
+                lazyLoad
+                mode="scaleToFill"
+              />
+              <View>
+                <View className="service-item__title">预约门诊</View>
+              </View>
+            </View>
+            <View className="location" onClick={this.selectCityEvent}>
+              <Image
+                className="location__icon"
+                src={imagesConfig.ICON_LOCATION_BLUE}
+                lazyLoad
+                mode="widthFix"
+              />
+              <Text className="location__text">{cityName}</Text>
+            </View>
+          </View>
+          {/* <View className="service-item" wx:if="{{showVideoConsultation}}">
+                <View className="service-item-left">
+                    <Image className="service-item__icon" src="/images/service2.png" lazy-load mode="scaleToFill"  />
+                    <View>
+                        <View className="service-item__title">{mtext['video_consultation'][language]}</View>
+                        <View className="service-item__describe">{mtext['one_on_one'][language]}</View>
+                    </View>
+                </View>
+            </View> */}
         </View>
       </View>
     );

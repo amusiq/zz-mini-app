@@ -24,6 +24,8 @@ import OPTION_FILES from "@/assets/images/option2.png";
 import OPTION_OFFER from "@/assets/images/option3.png";
 import LISTEN_FREE from "@/assets/images/listen_free.png";
 import ICON_BOOK from "@/assets/images/book.png";
+import ICON_CONSULT from "@/assets/images/service1.png";
+import ICON_VIDEO_CONSULT from "@/assets/images/service2.png";
 
 const IMG_HOST = "https://file-storage.distinctclinic.com/miniapp/static";
 
@@ -123,6 +125,8 @@ const images = {
   /** ---------------发现------------------- **/
   LISTEN_FREE,
   ICON_BOOK,
+  ICON_CONSULT,
+  ICON_VIDEO_CONSULT,
   /**---------------卓正医疗服务号-------------**/
   DISTINCT_SERVICE_APPOINTMENT: `${IMG_HOST}/distinct_service_appointment.png`,
   DISTINCT_SERVICE_FOLLOWUP: `${IMG_HOST}/distinct_service_followup.png`,
