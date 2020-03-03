@@ -89,7 +89,6 @@ class Request {
     }).then(res => {
       this.hideLoadingFun();
       if (res.statusCode == 200) {
-        console.log(typeof res.statusCode, "res.statusCode TYPe");
         return { code: 0, data: res.data };
       } else {
         console.log(data);
@@ -129,10 +128,10 @@ class Request {
         if (
           res.data.code == "3000017" ||
           res.data.code == "3000025" ||
-          res.statusCode == "400"
+          res.statusCode === 400
         ) {
-          return this.notLogin().then(res => {
-            if (res) {
+          return this.notLogin().then(notLoginRes => {
+            if (notLoginRes) {
               return this.loginHttpGet(url, data, header);
             } else {
               return false;
@@ -178,14 +177,14 @@ class Request {
       dataType: "json"
     }).then(res => {
       this.hideLoadingFun();
-      if (res.statusCode == 200) {
+      if (res.statusCode === 200) {
         return { code: 0, data: res.data };
       } else {
         console.log(data);
         console.log(res.data);
         if (res.data.code == "3000017" || res.data.code == "3000025") {
-          return this.notLogin().then(res => {
-            if (res) {
+          return this.notLogin().then(notLoginRes => {
+            if (notLoginRes) {
               return this.loginHttpPut(url, data, header);
             } else {
               return false;
@@ -245,8 +244,8 @@ class Request {
               url.indexOf("feedback") !== -1
               ? "activeGetTicket"
               : undefined
-          ).then(res => {
-            if (res) {
+          ).then(notLoginRes => {
+            if (notLoginRes) {
               return this.loginHttpPost(url, data, header);
             } else {
               return false;
@@ -291,8 +290,8 @@ class Request {
         console.log(data);
         console.log(res.data);
         if (res.data.code == "3000017" || res.data.code == "3000025") {
-          return this.notLogin().then(res => {
-            if (res) {
+          return this.notLogin().then(notLoginRes => {
+            if (notLoginRes) {
               return this.loginHttpDelete(url, data, header);
             } else {
               return false;
@@ -318,10 +317,9 @@ class Request {
       header: header,
       name: name
     }).then(res => {
-      if (res.statusCode == 200) {
+      if (res.statusCode === 200) {
         return { code: 0, data: res.data };
       } else {
-        console.log(data);
         console.log(res.data);
         return Taro.showToast({
           icon: "none",
