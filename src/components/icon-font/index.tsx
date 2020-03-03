@@ -6,16 +6,16 @@ import classnames from "classnames";
 import "./index.scss";
 
 type propsType = {
-  type: string
-  color: string
-  size: string
+  type: string;
+  color: string;
+  size: string;
 };
 
 type stateType = {};
 
 interface IconFont {
-  props: propsType
-  state: stateType
+  props: propsType;
+  state: stateType;
 }
 
 class IconFont extends Component {
@@ -28,10 +28,8 @@ class IconFont extends Component {
   render() {
     const { type, color, size } = this.props;
     const cls = classnames("icon-font", type && `icon-${type}`);
-    const style = { color, fontSize:`${size}px` };
-    return (
-      <Text className={cls} style={style} />
-    );
+    const style = { color, fontSize: `${size}px` };
+    return <Text className={cls} style={style} />;
   }
 }
 

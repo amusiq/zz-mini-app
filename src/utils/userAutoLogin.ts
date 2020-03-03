@@ -6,7 +6,7 @@
 
 import Taro from "@tarojs/taro";
 import request from "@/utils/request";
-import { config } from "@/constansts";
+import { api } from "@/constants";
 // import userHook from '../hook/userHook';
 
 export default {
@@ -52,12 +52,11 @@ export default {
     deviceInfo.SDKVersion = systemInfo.SDKVersion || "";
     body.deviceInfo = JSON.stringify(deviceInfo);
     body.networkType = network.networkType || "";
-    const autoLoginResult = await request.loginHttpPost(
-      { url: config.getApi("auto_login") },
-      body,
-      { "content-type": "application/json" },
-      false
-    );
+    const autoLoginResult = await request.loginHttpPost({
+      url: api.API_AUTO_LOGIN,
+      data: body,
+      header: { "content-type": "application/json", isNeedTokenInBody: false }
+    });
     console.log("自动登录返回结果", autoLoginResult);
     if (autoLoginResult.data) {
       Taro.setStorageSync("loginInfo", autoLoginResult.data);
@@ -90,11 +89,11 @@ export default {
       iv: userInfoBody.iv
     };
 
-    const userInfoResult = await request.loginHttpPost(
-      config.getApi("update_wx_user_info"),
-      body,
-      { "content-type": "application/json" }
-    );
+    const userInfoResult = await request.loginHttpPost({
+      url: api.API_UPDATE_WX_USER_INFO,
+      data: body,
+      header: { "content-type": "application/json" }
+    });
     console.log("更新微信用户信息", userInfoResult);
     return userInfoResult;
   }

@@ -1,6 +1,6 @@
 import Taro from "@tarojs/taro";
 import { config, appConfig } from "@/constants";
-import userAutoLogin from "@/utils/userAutoLogin";
+import userAutoLogin from "./userAutoLogin";
 
 class Request {
   CODE_SUCCESS = 0;
@@ -78,7 +78,7 @@ class Request {
   }
 
   async httpGet(options) {
-    const { url, data, header } = options;
+    const { url, data, header = {} } = options;
     const newHeader = await this.getRequestHeader(header);
     this.showLoadingFun();
     return Taro.request({

@@ -1,10 +1,13 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { Provider } from '@tarojs/mobx'
-import Index from './pages/index/index'
+import Taro, { Component, Config } from "@tarojs/taro";
+import { Provider } from "@tarojs/mobx";
+import Index from "./pages/index/index";
 
-import counterStore from './store/counter'
+import store from "@/store";
+// import counterStore from "./store/counter";
 
-import './app.scss'
+import "./app.scss";
+
+// const store = { counterStore };
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -12,12 +15,7 @@ import './app.scss'
 //   require('nerv-devtools')
 // }
 
-const store = {
-  counterStore
-}
-
 class App extends Component {
-
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -28,68 +26,68 @@ class App extends Component {
   // eslint-disable-next-line react/sort-comp
   config: Config = {
     pages: [
-      'pages/index/index',
-      'pages/consultOnline/consultOnline',
-      'pages/discovery/discovery',
-      'pages/user/user',
+      "pages/index/index",
+      "pages/consultOnline/consultOnline",
+      "pages/discovery/discovery",
+      "pages/user/user"
     ],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      backgroundTextStyle: "light",
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTitleText: "WeChat",
+      navigationBarTextStyle: "black"
     },
-    tabBar:{
-      color: '#888888',
-            selectedColor: '#006d82',
-            backgroundColor: '#ffffff',
-            borderStyle: 'white',
-            list: [
-                {
-                    pagePath: 'pages/index/index',
-                    text: '卓正服务',
-                    iconPath: './assets/tab-bar/home.png',
-                    selectedIconPath: './assets/tab-bar/home-active.png'
-                },
-                {
-                    pagePath: 'pages/consultOnline/consultOnline',
-                    text: '线上问诊',
-                    iconPath: './assets/tab-bar/consult.png',
-                    selectedIconPath: './assets/tab-bar/consult-active.png'
-                },
-                {
-                    pagePath: 'pages/discovery/discovery',
-                    text: '发现',
-                    iconPath: './assets/tab-bar/discovery.png',
-                    selectedIconPath: './assets/tab-bar/discovery-active.png'
-                },
-                {
-                    pagePath: 'pages/user/user',
-                    text: '我的',
-                    iconPath: './assets/tab-bar/user.png',
-                    selectedIconPath: './assets/tab-bar/user-active.png'
-                }
-            ],
+    tabBar: {
+      color: "#888888",
+      selectedColor: "#006d82",
+      backgroundColor: "#ffffff",
+      borderStyle: "white",
+      list: [
+        {
+          pagePath: "pages/index/index",
+          text: "卓正服务",
+          iconPath: "./assets/tab-bar/home.png",
+          selectedIconPath: "./assets/tab-bar/home-active.png"
+        },
+        {
+          pagePath: "pages/consultOnline/consultOnline",
+          text: "线上问诊",
+          iconPath: "./assets/tab-bar/consult.png",
+          selectedIconPath: "./assets/tab-bar/consult-active.png"
+        },
+        {
+          pagePath: "pages/discovery/discovery",
+          text: "发现",
+          iconPath: "./assets/tab-bar/discovery.png",
+          selectedIconPath: "./assets/tab-bar/discovery-active.png"
+        },
+        {
+          pagePath: "pages/user/user",
+          text: "我的",
+          iconPath: "./assets/tab-bar/user.png",
+          selectedIconPath: "./assets/tab-bar/user-active.png"
+        }
+      ]
     }
-  }
+  };
 
-  componentDidMount () {}
+  componentDidMount() {}
 
-  componentDidShow () {}
+  componentDidShow() {}
 
-  componentDidHide () {}
+  componentDidHide() {}
 
-  componentDidCatchError () {}
+  componentDidCatchError() {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />
       </Provider>
-    )
+    );
   }
 }
 
-Taro.render(<App />, document.getElementById('app'))
+Taro.render(<App />, document.getElementById("app"));

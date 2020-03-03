@@ -1,24 +1,21 @@
 import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Button, Text } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
 import { SearchInput, SwiperComponent } from "@/components";
 
 import "./index.scss";
 
 type PageStateProps = {
-  counterStore: {
-    counter: number
-    increment: Function
-    decrement: Function
-    incrementAsync: Function
-  }
+  //   counterStore: {
+  //     counter: number;
+  //   };
 };
 
 interface Index {
-  props: PageStateProps
+  props: PageStateProps;
 }
 
-@inject("counterStore")
+// @inject("counterStore")
 @observer
 class Index extends Component {
   /**
@@ -38,7 +35,9 @@ class Index extends Component {
     console.log("componentWillReact");
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
 
   componentWillUnmount() {}
 
@@ -46,32 +45,22 @@ class Index extends Component {
 
   componentDidHide() {}
 
-  increment = () => {
-    const { counterStore } = this.props;
-    counterStore.increment();
-  };
-
-  decrement = () => {
-    const { counterStore } = this.props;
-    counterStore.decrement();
-  };
-
-  incrementAsync = () => {
-    const { counterStore } = this.props;
-    counterStore.incrementAsync();
-  };
-
   onClickSearchInput = () => {
-    console.log('onClickSearchInput')
-  }
+    console.log("onClickSearchInput");
+  };
 
   render() {
-    const {
-      counterStore: { counter }
-    } = this.props;
+    // const {
+    //   counterStore: { counter }
+    // } = this.props;
+    // console.log(counter, "banners");
     return (
-      <View className='zz-container'>
-        <SearchInput placeholder='搜索您想就诊的医生或科室' disabled onClick={this.onClickSearchInput} />
+      <View className="zz-container">
+        <SearchInput
+          placeholder="搜索您想就诊的医生或科室"
+          disabled
+          onClick={this.onClickSearchInput}
+        />
         <SwiperComponent />
       </View>
     );

@@ -1,5 +1,7 @@
-import CounterStore from "./counter"
+import counterStore from "./counter";
+import homeStore from "./homeStore";
 
 export default {
-  counter: new CounterStore(),
-}
+  homeStore,
+  counterStore
+};
