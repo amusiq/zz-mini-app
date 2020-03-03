@@ -1,4 +1,5 @@
-const HOST = 'https://app.distinctclinic.com'
+const HOST = 'https://app.distinctclinic.com';
+const IMG_HOST = 'https://file-storage.distinctclinic.com/distinct-wxmp/static/img/';
 
 module.exports = {
   env: {
@@ -6,6 +7,7 @@ module.exports = {
   },
   defineConstants: {
     HOST: HOST,
+    IMG_HOST: IMG_HOST
   },
   mini: { },
   h5: {}
