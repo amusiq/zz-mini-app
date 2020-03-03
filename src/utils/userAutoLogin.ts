@@ -53,7 +53,7 @@ export default {
     body.deviceInfo = JSON.stringify(deviceInfo);
     body.networkType = network.networkType || "";
     const autoLoginResult = await request.loginHttpPost(
-      config.getApi("auto_login"),
+      { url: config.getApi("auto_login") },
       body,
       { "content-type": "application/json" },
       false

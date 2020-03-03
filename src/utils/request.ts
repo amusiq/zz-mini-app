@@ -77,18 +77,19 @@ class Request {
     });
   }
 
-  async httpGet(url, data = {}, header = {}) {
-    header = await this.getRequestHeader(header);
+  async httpGet(options) {
+    const { url, data, header } = options;
+    const newHeader = await this.getRequestHeader(header);
     this.showLoadingFun();
     return Taro.request({
       url: url,
       data: data,
-      header: header,
+      header: newHeader,
       method: "GET",
       dataType: "json"
     }).then(res => {
       this.hideLoadingFun();
-      if (res.statusCode == 200) {
+      if (res.statusCode === 200) {
         return { code: 0, data: res.data };
       } else {
         console.log(data);
@@ -202,10 +203,11 @@ class Request {
     });
   }
 
-  async loginHttpPost(url, data = {}, header = {}, isNeedTokenInBody = true) {
-    header = await this.getRequestHeader(header);
-    if (!header["content-type"]) {
-      header["content-type"] = "application/x-www-form-urlencoded";
+  async loginHttpPost(options) {
+    const { url, data, header = {}, isNeedTokenInBody = true } = options;
+    const newHeader = await this.getRequestHeader(header);
+    if (!newHeader["content-type"]) {
+      newHeader["content-type"] = "application/x-www-form-urlencoded";
     }
     this.showLoadingFun();
     const loginInfo = Taro.getStorageSync("loginInfo");
@@ -218,19 +220,19 @@ class Request {
       //         return false;
       //     }
       // });
-      header["authToken"] = data["authToken"] = "";
+      newHeader["authToken"] = data["authToken"] = "";
     } else {
       if (isNeedTokenInBody) {
-        header["authToken"] = data["authToken"] = loginInfo["authToken"];
+        newHeader["authToken"] = data["authToken"] = loginInfo["authToken"];
       } else {
-        header["authToken"] = loginInfo["authToken"];
+        newHeader["authToken"] = loginInfo["authToken"];
       }
     }
 
     return Taro.request({
       url: url,
       data: data,
-      header: header,
+      header: newHeader,
       method: "POST",
       dataType: "json"
     }).then(res => {
@@ -246,7 +248,7 @@ class Request {
               : undefined
           ).then(notLoginRes => {
             if (notLoginRes) {
-              return this.loginHttpPost(url, data, header);
+              return this.loginHttpPost({ url, data, header: newHeader });
             } else {
               return false;
             }
