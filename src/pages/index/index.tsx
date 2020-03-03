@@ -1,6 +1,7 @@
 import Taro, { Component, Config } from "@tarojs/taro";
-import { View } from "@tarojs/components";
+import { View, Image, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
+import { imagesConfig } from "@/constants";
 import { SearchInput, SwiperComponent } from "@/components";
 
 import "./index.scss";
@@ -56,19 +57,54 @@ class Index extends Component {
     homeStore.getBanners();
   };
 
+  menuEvent = index => {
+    console.log(index);
+  };
+
   render() {
     const {
       homeStore: { banners }
     } = this.props;
+    const options = [
+      {
+        title: "就诊网点",
+        icon: imagesConfig.OPTION_NETWORKS
+      },
+      {
+        title: "家庭健康档案",
+        icon: imagesConfig.OPTION_FILES
+      },
+      {
+        title: "套餐及优惠",
+        icon: imagesConfig.OPTION_OFFER
+      }
+    ];
     console.log(banners, "banners");
     return (
-      <View className="zz-container">
+      <View className="zz-container home-container">
         <SearchInput
           placeholder="搜索您想就诊的医生或科室"
           disabled
           onClick={this.onClickSearchInput}
         />
         <SwiperComponent source={banners} />
+        <View className="options">
+          {options.map((item, index) => (
+            <View
+              className="options-item"
+              onClick={() => this.menuEvent(index)}
+              key="title"
+            >
+              <Image
+                className="options-item__icon"
+                src={item.icon}
+                lazyLoad
+                mode="scaleToFill"
+              />
+              <Text className="options-item__title">{item.title}</Text>
+            </View>
+          ))}
+        </View>
       </View>
     );
   }
