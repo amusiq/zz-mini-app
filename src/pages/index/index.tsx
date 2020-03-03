@@ -6,16 +6,17 @@ import { SearchInput, SwiperComponent } from "@/components";
 import "./index.scss";
 
 type PageStateProps = {
-  //   counterStore: {
-  //     counter: number;
-  //   };
+  homeStore: {
+    banners: [];
+    getBanners: Function;
+  };
 };
 
 interface Index {
   props: PageStateProps;
 }
 
-// @inject("counterStore")
+@inject("homeStore")
 @observer
 class Index extends Component {
   /**
@@ -36,6 +37,7 @@ class Index extends Component {
   }
 
   componentDidMount() {
+    this.init();
     console.log("componentDidMount");
   }
 
@@ -49,11 +51,16 @@ class Index extends Component {
     console.log("onClickSearchInput");
   };
 
+  init = () => {
+    const { homeStore } = this.props;
+    homeStore.getBanners();
+  };
+
   render() {
-    // const {
-    //   counterStore: { counter }
-    // } = this.props;
-    // console.log(counter, "banners");
+    const {
+      homeStore: { banners }
+    } = this.props;
+    console.log(banners, "banners");
     return (
       <View className="zz-container">
         <SearchInput
@@ -61,7 +68,7 @@ class Index extends Component {
           disabled
           onClick={this.onClickSearchInput}
         />
-        <SwiperComponent />
+        <SwiperComponent source={banners} />
       </View>
     );
   }

@@ -1,27 +1,26 @@
-import { ComponentType } from 'react'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from '@tarojs/mobx'
+import { ComponentType } from "react";
+import Taro, { Component, Config } from "@tarojs/taro";
+import { View, Button, Text } from "@tarojs/components";
+import { observer, inject } from "@tarojs/mobx";
 
-import './discovery.scss'
+import "./discovery.scss";
 
 type PageStateProps = {
   counterStore: {
-    counter: number
-    increment: Function
-    decrement: Function
-    incrementAsync: Function
-  }
-}
+    counter: number;
+    increment: Function;
+    decrement: Function;
+    incrementAsync: Function;
+  };
+};
 
 interface Discovery {
-  props: PageStateProps
+  props: PageStateProps;
 }
 
-@inject('counterStore')
+@inject("counterStore")
 @observer
 class Discovery extends Component {
-
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -30,46 +29,44 @@ class Discovery extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '发现'
+    navigationBarTitleText: "发现"
+  };
+
+  componentWillMount() {}
+
+  componentWillReact() {
+    console.log("componentWillReact");
   }
 
-  componentWillMount () { }
+  componentDidMount() {}
 
-  componentWillReact () {
-    console.log('componentWillReact')
-  }
+  componentWillUnmount() {}
 
-  componentDidMount () { }
+  componentDidShow() {}
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
+  componentDidHide() {}
 
   increment = () => {
-    const { counterStore } = this.props
-    counterStore.increment()
-  }
+    const { counterStore } = this.props;
+    counterStore.increment();
+  };
 
   decrement = () => {
-    const { counterStore } = this.props
-    counterStore.decrement()
-  }
+    const { counterStore } = this.props;
+    counterStore.decrement();
+  };
 
   incrementAsync = () => {
-    const { counterStore } = this.props
-    counterStore.incrementAsync()
-  }
+    const { counterStore } = this.props;
+    counterStore.incrementAsync();
+  };
 
-  render () {
-    const { counterStore: { counter } } = this.props
-    return (
-      <View className='discovery'>
-        发现
-      </View>
-    )
+  render() {
+    const {
+      counterStore: { counter }
+    } = this.props;
+    return <View className="discovery">发现</View>;
   }
 }
 
-export default Discovery  as ComponentType
+export default Discovery as ComponentType;

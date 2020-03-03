@@ -4,7 +4,7 @@ import request from "@/utils/request";
 
 const homeStore = observable({
   banners: [],
-  cityId: "",
+  cityId: 1,
 
   async getBanners() {
     const data = { module: "home", cityId: this.cityId }; // 城市id非必填

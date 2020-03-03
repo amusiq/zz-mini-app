@@ -3,8 +3,6 @@ import { config, appConfig } from "@/constants";
 import userAutoLogin from "./userAutoLogin";
 
 class Request {
-  CODE_SUCCESS = 0;
-  CODE_AUTH_EXPIRED = "600";
   loginNumber = 0; // 尝试登录的次数
   showLoading = false;
   loadingInter;

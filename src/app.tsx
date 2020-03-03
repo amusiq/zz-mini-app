@@ -3,11 +3,8 @@ import { Provider } from "@tarojs/mobx";
 import Index from "./pages/index/index";
 
 import store from "@/store";
-// import counterStore from "./store/counter";
 
 import "./app.scss";
-
-// const store = { counterStore };
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
