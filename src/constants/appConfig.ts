@@ -1,5 +1,4 @@
-import ImageConfig from './ImagesConfig';
-import language from '../language';
+import imageConfig from './imageConfig';
 /**
  * navBarBackType:
  * NormalBack 常规返回（只有箭头返回按钮）
@@ -34,29 +33,29 @@ export default {
     myOrderCategoryList: [
         {
             title: '门诊预约',
-            icon: ImageConfig.distinct_appointment,
+            icon: imageConfig.DISTINCT_APPOINTMENT,
             key: 'appointment'
         },
         {
             title: '线上问诊',
-            icon: ImageConfig.distinct_consultation,
+            icon: imageConfig.DISTINCT_CONSULTATION,
             key: 'consultation'
         }
     ],
     myOrderCategoryFullList: [
         {
             title: '门诊预约',
-            icon: ImageConfig.distinct_appointment,
+            icon: imageConfig.DISTINCT_APPOINTMENT,
             key: 'appointment'
         },
         {
             title: '诊后随访',
-            icon: ImageConfig.distinct_followup,
+            icon: imageConfig.DISTINCT_FOLLOWUP,
             key: 'followup'
         },
         {
             title: '线上问诊',
-            icon: ImageConfig.distinct_consultation,
+            icon: imageConfig.DISTINCT_CONSULTATION,
             key: 'consultation'
         }
     ],
@@ -65,14 +64,14 @@ export default {
           {
               title: language['peopleMtext']['health_record']['CN'],
               subTitle: '',
-              icon: ImageConfig.distinct_health_record,
+              icon: imageConfig.DISTINCT_HEALTH_RECORD,
               isShowSubTitle: true,
               key: 'healthRecord'
           },
           {
               title: language['peopleMtext']['asq']['CN'],
               subTitle: '',
-              icon: ImageConfig.distinct_asq,
+              icon: imageConfig.DISTINCT_ASQ,
               isShowSubTitle: false,
               isHideBottomLine: true,
               key: 'asqAsking'
@@ -82,14 +81,14 @@ export default {
           {
               title: '卓正会员卡',
               subTitle: '',
-              icon: ImageConfig.distinct_card,
+              icon: imageConfig.DISTINCT_CARD,
               isShowSubTitle: true,
               key: 'distinctCard'
           },
           {
               title: '代金券',
               subTitle: '',
-              icon: ImageConfig.distinct_ticket,
+              icon: imageConfig.DISTINCT_TICKET,
               isShowSubTitle: true,
               isHideBottomLine: true,
               key: 'distinctTicket'
@@ -99,14 +98,14 @@ export default {
           {
               title: language['peopleMtext']['contact_customer']['CN'],
               subTitle: '',
-              icon: ImageConfig.distinct_contact,
+              icon: imageConfig.DISTINCT_CONTACT,
               isShowSubTitle: false,
               key: 'contact'
           },
           {
               title: language['peopleMtext']['feed_back']['CN'],
               subTitle: '',
-              icon: ImageConfig.distinct_feedback,
+              icon: imageConfig.DISTINCT_FEEDBACK,
               isShowSubTitle: false,
               isHideBottomLine: true,
               key: 'feedback'
@@ -116,7 +115,7 @@ export default {
           {
               title: language['peopleMtext']['setting']['CN'],
               subTitle: '',
-              icon: ImageConfig.distinct_setting,
+              icon: imageConfig.DISTINCT_SETTING,
               isShowSubTitle: false,
               isHideBottomLine: true,
               key: 'setting'
@@ -128,7 +127,7 @@ export default {
             {
                 title: language['peopleMtext']['health_record']['EN'],
                 subTitle: '',
-                icon: ImageConfig.distinct_health_record,
+                icon: imageConfig.DISTINCT_HEALTH_RECORD,
                 isShowSubTitle: true,
                 isHideBottomLine: true,
                 key: 'healthRecord'
@@ -137,7 +136,7 @@ export default {
         [
             {
                 title: language['peopleMtext']['my_appointment']['EN'],
-                icon: ImageConfig.distinct_appointment,
+                icon: imageConfig.DISTINCT_APPOINTMENT,
                 isShowSubTitle: false,
                 isHideBottomLine: true,
                 key: 'appointment'
@@ -147,14 +146,14 @@ export default {
             {
                 title: language['peopleMtext']['contact_customer']['EN'],
                 subTitle: '',
-                icon: ImageConfig.distinct_contact,
+                icon: imageConfig.DISTINCT_CONTACT,
                 isShowSubTitle: false,
                 key: 'contact'
             },
             {
                 title: language['peopleMtext']['feed_back']['EN'],
                 subTitle: '',
-                icon: ImageConfig.distinct_feedback,
+                icon: imageConfig.DISTINCT_FEEDBACK,
                 isShowSubTitle: false,
                 isHideBottomLine: true,
                 key: 'feedback'
@@ -164,7 +163,7 @@ export default {
             {
                 title: language['peopleMtext']['setting']['EN'],
                 subTitle: '',
-                icon: ImageConfig.distinct_setting,
+                icon: imageConfig.DISTINCT_SETTING,
                 isShowSubTitle: false,
                 isHideBottomLine: true,
                 key: 'setting'
