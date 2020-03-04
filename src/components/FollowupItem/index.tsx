@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
 import Taro, { Component } from "@tarojs/taro";
 import { View, Text, Image } from "@tarojs/components";
-import { consultTools } from "@/tools";
+import { consultTool } from "@/tools";
 
 import "./index.scss";
 
@@ -47,10 +47,10 @@ class FollowupItem extends Component {
           </View>
           {item.statusName === "待发起" ? (
             <Text className="consultType">
-              有效期：{consultTools.getFormatDate(item.followUpExpiredDate)}
+              有效期：{consultTool.getFormatDate(item.followUpExpiredDate)}
               （剩余
               <Text style={{ color: "#FFAF27" }}>
-                {consultTools.timeDifference(item.followUpExpiredSurplusTime)}
+                {consultTool.timeDifference(item.followUpExpiredSurplusTime)}
               </Text>
               ）
             </Text>
@@ -60,7 +60,7 @@ class FollowupItem extends Component {
         </View>
         <Image
           className="consultStatus"
-          src={consultTools.getConsultStatusImage(item.statusName)}
+          src={consultTool.getConsultStatusImage(item.statusName)}
         />
       </View>
     );

@@ -1,1 +1,1 @@
-export { default as consultTools } from "./consultTools";
+export { default as consultTool } from "./consultTool";

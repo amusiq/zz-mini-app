@@ -1,7 +1,7 @@
 import { ComponentType } from "react";
 import Taro, { Component } from "@tarojs/taro";
 import { View, Text, Image } from "@tarojs/components";
-import consultTools from "@/tools";
+import { consultTool } from "@/tools";
 
 import "./index.scss";
 
@@ -63,7 +63,7 @@ class ConsultItem extends Component {
         </View>
         <Image
           className="consultStatus"
-          src={consultTools.getConsultStatusImage(item.statusName)}
+          src={consultTool.getConsultStatusImage(item.statusName)}
         />
       </View>
     );

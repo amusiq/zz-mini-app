@@ -48,7 +48,7 @@ class ConsultOnline extends Component {
     const {language}=config;
     const tabList =[];
     const isShowConsultingBlock = false;
-    const selectedSublist = [];
+    const selectedSubList = [];
     const aboutUrl = 'https://mp.weixin.qq.com/s/9iIFqLqtk0oKwYWv-W1h1w';
     const bannerUrl = 'https://file-storage.distinctclinic.com/miniapp/static/icon_consultation.png';
     const selectType= '';
@@ -65,13 +65,13 @@ class ConsultOnline extends Component {
                 <Text className="searchFloateText">搜索您想咨询的医生姓名</Text>
             </View>
             <Image style={{width:'100%'}} src={bannerUrl} mode="widthFix" />
-            {isShowConsultingBlock && selectedSublist.length > 0&&<View className="bottomFloatBg">
+            {isShowConsultingBlock && selectedSubList.length > 0&&<View className="bottomFloatBg">
                 <View className="tabContainer">
                   {tabList.map((item,index)=><View key={item.id} className={selectType === 'recommend' ? 'tab-item-normal-recommend' : currentSelectedIndex === index ? 'tab-item-active' : 'tab-item-normal'} onClick={this.switchTab(index)}>{item.title}</View>)}
                 </View>
             </View>}
         </View>
-        {isShowConsultingBlock && selectedSublist.length > 0 &&(<View className="consultingBlock">
+        {isShowConsultingBlock && selectedSubList.length > 0 &&(<View className="consultingBlock">
             <Swiper
                 indicatorColor="rgba(255,255,255,.5)"
                 indicatorActiveColor="#fff"
@@ -79,7 +79,7 @@ class ConsultOnline extends Component {
                 nextMargin={(selectType === 'consulting' || selectType === 'followup') ? '218rpx' : '218rpx'}
                 onChange={this.scrollChangeAction}
                 className={`weui-flex ${selectType === 'recommend' ? 'swiper-box-recommend' : 'swiper-box'}`}>
-                  {selectedSublist.map((item,index)=>( <SwiperItem key={String(index)}>
+                  {selectedSubList.map((item,index)=>( <SwiperItem key={String(index)}>
                       {selectType === 'consulting' &&
                             <ConsultItem index={index} item={item} navigateToUrl={this.navigateTabItemDetail} />
                         }
