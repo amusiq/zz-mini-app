@@ -1,19 +1,19 @@
 $weuiCellBg: #ffffff;
 $weuiCellBorderColor: #d9d9d9;
-$weuicellgapv: 10px;
-$weuicellgaph: 15px;
-$weuicellinnergaph: 0.35em;
-$weuicellfontsize: 17px;
+$weuiCellGapV: 10px;
+$weuiCellGapH: 15px;
+$weuiCellInnerGapH: 0.35em;
+$weuiCellFontSize: 17px;
 $weuiCellHeight: 44px;
-$weuiCellHeightEm: unit($weuiCellHeight / $weuiCellFontSize, em);
-$weuicelltipsfontsize: 14px;
-$weuicelllabelwidth: 105px;
+$weuiCellHeightEm: calc($weuiCellHeight / $weuiCellFontSize * 1em);
+$weuiCellTipsFontSize: 14px;
+$weuiCellLabelWidth: 105px;
 $weuiCellActiveBg: #ececec;
 
-$weuiCellLineHeight: unit(
-  ($weuiCellHeight - 2 * $weuiCellGapV) / $weuiCellFontSize
+$weuiCellLineHeight: calc(
+  ($weuiCellHeight - 2 * $weuiCellGapV) / $weuiCellFontSize * 1em
 ); // 高度为44px，减去上下padding的行高
-$weuicellsmargintop: unit (20 / $weuiCellFontSize, em);
+$weuiCellsMarginTop: calc(20px / $weuiCellFontSize * 1em);
 
 // weui switch
 $weuiSwitchHeight: 32px;
