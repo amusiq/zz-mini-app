@@ -12,5 +12,7 @@ export default {
   API_AUTO_LOGIN: `${host}/auth-api/auth/v2/auto_login`,
   API_UPDATE_WX_USER_INFO: `${host}/auth-api/auth/v2/update_wx_user_info`,
   API_ADVERTISEMENTS_BANNERS: `${host}/app-web2/advertisements/v2/banners`, // 科普轮播广告
-  API_POPULAR_SCIENCE_LATEST: `${host}/app-web2/psa/latest` // 科普最新文章
+  API_POPULAR_SCIENCE_LATEST: `${host}/app-web2/psa/latest`, // 科普最新文章
+  API_CITIES: `${host}/app-web2/cities`, // 城市列表
+  API_GET_BY_GEO_CODER: `${host}/app-web2/cities/get_by_geo_coder` // 根据经纬度查城市
 };

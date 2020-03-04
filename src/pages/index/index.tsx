@@ -72,8 +72,7 @@ class Index extends Component {
         icon: imagesConfig.OPTION_OFFER
       }
     ];
-    const cityName = "";
-    console.log(banners, "banners");
+    const cityInfo = Taro.getStorageSync("cityInfo");
     return (
       <View className="zz-container home-container">
         <SearchInput
@@ -119,7 +118,7 @@ class Index extends Component {
                 lazyLoad
                 mode="widthFix"
               />
-              <Text className="location__text">{cityName}</Text>
+              <Text className="location__text">{cityInfo.text}</Text>
             </View>
           </View>
           {/* <View className="service-item" wx:if="{{showVideoConsultation}}">

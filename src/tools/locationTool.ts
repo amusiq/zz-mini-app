@@ -1,10 +1,8 @@
 import Taro from "@tarojs/taro";
-import { config } from "@/constants";
+import { api, config } from "@/constants";
 import request from "@/utils/request";
-import language from "../language";
 
 export default {
-  mtext: language.index,
   /**
    * 默认城市
    */
@@ -13,19 +11,17 @@ export default {
     cityName: "深圳"
   },
   /**
-   * 位置定位相关
+   * 获取位置定位
    */
   getLocation(callBack) {
     Taro.getLocation({
-      type: "wgs84" //默认为 wgs84 返回 gps 坐标，gcj02 返回可用于Taro.openLocation的坐标,
+      type: "wgs84"
     })
-      .then(res => {
-        console.log("成功获取定位信息", res);
-        if (callBack && typeof callBack === "function") {
-          callBack(res);
-        }
+      .then(locationRes => {
+        Taro.setStorageSync("location", locationRes);
+        callBack && callBack(locationRes);
       })
-      .catch(err => {
+      .catch(() => {
         Taro.showModal({
           title: "温馨提示",
           content: "若不打开授权，将无法获取定位信息",
@@ -36,51 +32,29 @@ export default {
           confirmColor: "#006d82"
         }).then(res => {
           if (res.confirm) {
-            Taro.openSetting().then(res => {
-              if (res.authSetting && res.authSetting["scope.userLocation"]) {
+            Taro.openSetting().then(settingRes => {
+              if (
+                settingRes.authSetting &&
+                settingRes.authSetting["scope.userLocation"]
+              ) {
                 this.getLocation(callBack);
               } else {
-                if (callBack && typeof callBack === "function") {
-                  callBack();
-                }
+                callBack && callBack();
               }
             });
           } else {
-            if (callBack && typeof callBack === "function") {
-              callBack();
-            }
+            callBack && callBack();
           }
         });
       });
   },
-  /**
-   * 通过城市id，遍历城市列表，获取item
-   */
-  getCityItem(cityId, cityList) {
-    for (let i = 0; i < cityList.length; i++) {
-      if (cityId == cityList[i].value) {
-        return cityList[i];
-      }
-    }
-  },
-  /**
-   * 通过城市id，遍历城市列表，获取下标
-   */
-  getCityIndex(cityId, cityList) {
-    for (let i = 0; i < cityList.length; i++) {
-      if (cityId == cityList[i].value) {
-        return i;
-      }
-    }
-    return 0;
-  },
 
   // 获取当前当前城市定位
-  async getCurrentCityData(locationRes, cityList, callBack) {
+  async getCurrentCityInfo(locationRes, cityList, callBack) {
     console.log("城市定位结果", locationRes);
     if (locationRes) {
-      let city_id = ""; // 实时定位城市id
-      let city_name = ""; // 实时定位城市名称
+      let cityId = ""; // 实时定位城市id
+      let cityName = ""; // 实时定位城市名称
       const selectCityTime = Taro.getStorageSync("selectCityTimeV2");
       let needLocation = false;
       if (selectCityTime < new Date().getTime() - 86400000) {
@@ -88,40 +62,38 @@ export default {
         needLocation = true;
       }
       if (needLocation && locationRes) {
-        const latitude = locationRes.latitude;
-        const longitude = locationRes.longitude;
-        const requestBody = { latitude: latitude, longitude: longitude };
-        const near_citys_res = await request.httpGet(
-          config.getApi("get_by_geo_coder"),
-          requestBody
-        );
-        if (near_citys_res.code === 0) {
-          const cityData = near_citys_res.data;
-          city_id = cityData.id;
-          city_name = cityData.name;
-          let cityItem = wepy.getStorageSync("cityItem");
-          if (cityItem && city_id && city_id != cityItem.value) {
-            const language = await config.getLanguage();
-            const confirm_res = await wepy.showModal({
-              title: this.mtext["reminder"][language],
+        const { latitude, longitude } = locationRes;
+        const requestBody = { latitude, longitude };
+        const nearCityRes = await request.httpGet({
+          url: api.API_GET_BY_GEO_CODER,
+          data: requestBody
+        });
+        if (nearCityRes.code === 0) {
+          const cityData = nearCityRes.data;
+          cityId = cityData.id;
+          cityName = cityData.name;
+          let cityInfo = Taro.getStorageSync("cityInfo");
+          if (cityInfo && cityId && cityId != cityInfo.value) {
+            const language = config.language;
+            const confirmRes = await Taro.showModal({
+              title: "提示",
               content:
-                language == "CN"
-                  ? "系统定位你在" + city_name + "，是否切换到" + city_name
+                language === "CN"
+                  ? "系统定位你在" + cityName + "，是否切换到" + cityName
                   : "Would you like to be switched to your current city based on auto-locate?",
-              confirmText: this.mtext["yes"][language],
-              cancelText: this.mtext["no"][language],
+              confirmText: "切换",
+              cancelText: "取消",
               confirmColor: "#006d82"
             });
-            if (confirm_res.confirm) {
-              cityItem = this.getCityItem(city_id, cityList);
-              Taro.setStorageSync("cityItem", cityItem);
+            if (confirmRes.confirm) {
+              cityInfo = this.getCityItem(cityId, cityList);
+              Taro.setStorageSync("cityInfo", cityInfo);
             }
             // 确认回调
-            if (callBack && typeof callBack === "function") {
-              callBack({ cityId: cityItem.value, cityName: cityItem.text });
-            }
+            callBack &&
+              callBack({ cityId: cityInfo.value, cityName: cityInfo.text });
           } else {
-            this.renderLocation(city_id, cityList, callBack);
+            this.renderLocation(cityId, cityList, callBack);
           }
           Taro.setStorageSync("selectCityTimeV2", new Date().getTime());
         } else {
@@ -137,40 +109,52 @@ export default {
 
   // 异常处理：定位失败，拒绝定位授权、接口请求异常
   renderLocation(cityId, cityList, callBack) {
-    let cityItem = Taro.getStorageSync("cityItem");
-    if (!cityItem || !cityItem.value) {
-      cityItem = this.getCityItem(cityId, cityList);
-      Taro.setStorageSync("cityItem", cityItem);
+    let cityInfo = Taro.getStorageSync("cityInfo");
+    if (!cityInfo || !cityInfo.value) {
+      cityInfo = this.getCityItem(cityId, cityList);
+      Taro.setStorageSync("cityInfo", cityInfo);
     }
-    if (callBack && typeof callBack === "function") {
-      callBack({ cityId: cityItem.value, cityName: cityItem.text });
+    callBack && callBack({ cityId: cityInfo.value, cityName: cityInfo.text });
+  },
+
+  /**
+   * 通过城市id，遍历城市列表，获取item
+   */
+  getCityItem(cityId, cityList) {
+    for (let i = 0; i < cityList.length; i++) {
+      if (cityId === cityList[i].value) {
+        return cityList[i];
+      }
     }
   },
+
   /**
-   * parameter：cityList
-   * return：{cityId：'', cityName: ''}
+   * 获取城市列表
    */
-  async getCityMessage(callBack, cityList = []) {
-    let cityListTemp = [];
-    if (!cityList || cityList.length === 0) {
-      const cityListRes = await request.httpGet(config.getApi("cities"), {});
-      const data = cityListRes.data || [];
-      if (cityListRes.code === 0) {
-        for (let i = 0; i < data.length; i++) {
-          const item = data[i];
-          cityListTemp.push({
-            value: item.id,
-            text: item.name,
-            specialDepartmentDesc: item.specialDepartmentDesc,
-            packageUrl: item.packageUrl
-          });
-        }
-      }
-    } else {
-      cityListTemp = cityList;
+  async getCityList() {
+    const cityListRes = await request.httpGet({
+      url: api.API_CITIES,
+      data: {}
+    });
+    let cityList = [];
+    const data = cityListRes.data || [];
+    if (cityListRes.code === 0) {
+      cityList = data.map(item => {
+        return {
+          value: item.id,
+          text: item.name,
+          specialDepartmentDesc: item.specialDepartmentDesc,
+          packageUrl: item.packageUrl
+        };
+      });
     }
-    this.getLocation(res =>
-      this.getCurrentCityData(res, cityListTemp, callBack)
-    );
+    return cityList;
+  },
+
+  // 获取当前城市初始化函数
+  async getCurrentCity(cityList = []) {
+    this.getLocation(res => {
+      this.getCurrentCityInfo(res, cityList);
+    });
   }
 };
