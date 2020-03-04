@@ -2,7 +2,7 @@ import { ComponentType } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, WebView, Block, Image, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import { config } from "@/constants";
+import { config, imagesConfig } from "@/constants";
 import { SearchInput, SwiperComponent } from "@/components";
 
 import "./discovery.scss";
@@ -10,7 +10,13 @@ import "./discovery.scss";
 type PageStateProps = {
   discoveryStore: {
     banners: [];
+    newest: {
+      hasNext: boolean;
+      list: [];
+      limit: number;
+    };
     getBanners: Function;
+    getArticleInfo: Function;
   };
 };
 
@@ -28,6 +34,7 @@ class Discovery extends Component {
   componentWillMount() {
     const { discoveryStore } = this.props;
     discoveryStore.getBanners();
+    discoveryStore.getArticleInfo(true);
   }
 
   componentWillReact() {
@@ -42,14 +49,24 @@ class Discovery extends Component {
 
   render() {
     const {
-      discoveryStore: { banners }
+      discoveryStore: { banners, newest }
     } = this.props;
     const guideUrl = "https://mp.weixin.qq.com/s/e-AJuZtAl9rr6-lU6F6GEQ";
     const { language } = config;
-    const courses = [];
-    const newest = {
-      list: []
-    };
+    const courses = [
+      {
+        type: "listen",
+        title: "优质科普",
+        subtitle: "1500+循证科普文章",
+        icon: imagesConfig.ICON_BOOK
+      },
+      {
+        type: "course",
+        title: "优选课程",
+        subtitle: "100+课程免费试听",
+        icon: imagesConfig.LISTEN_FREE
+      }
+    ];
     return (
       <Block>
         {language === "EN" || language === "en" ? (
@@ -67,7 +84,6 @@ class Discovery extends Component {
               indicatorDots={banners.length > 1}
               source={banners}
               onClick={this.onClickAD}
-              key="articleId"
             />
             <View>
               <View className="zz-title">健康课程</View>
