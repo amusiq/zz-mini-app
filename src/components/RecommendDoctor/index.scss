@@ -1,0 +1,63 @@
+.consult-item {
+  flex-direction: row;
+  width: 500rpx;
+  height: 190rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  border: 1rpx solid rgba(0, 111, 131, 0.1);
+  box-shadow: 0rpx 5rpx 20rpx rgba(53, 109, 119, 0.1);
+  position: relative;
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+}
+.doctorImg {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.doctorInfoContainer {
+  flex: 1;
+  flex-direction: column;
+  margin-left: 20rpx;
+  margin-top: 40rpx;
+  .doctorInfoNameService {
+    flex-direction: row;
+    align-items: center;
+    .doctorName {
+      font-size: 30rpx;
+      font-weight: bold;
+      color: #0a434d;
+    }
+    .serviceContainer {
+      padding-left: 10rpx;
+      padding-right: 10rpx;
+      padding-top: 2rpx;
+      padding-bottom: 2rpx;
+      margin-left: 10rpx;
+      font-size: 20rpx;
+      color: #0a434d;
+      background: rgba(244, 246, 246, 1);
+      border-radius: 18rpx;
+    }
+  }
+  .consultType {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 5rpx;
+    margin-right: 20rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+.consultStatus {
+  width: 90rpx;
+  height: 90rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

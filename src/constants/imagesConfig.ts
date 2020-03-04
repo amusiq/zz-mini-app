@@ -1,4 +1,3 @@
-import config from "./config";
 import ICON_LOGO from "@/assets/images/icon_logo.png";
 import BACK_BLACK_BG from "@/assets/images/back_black_bg.png";
 import BACK_WHITE from "@/assets/images/back_white.png";
@@ -27,6 +26,15 @@ import LISTEN_FREE from "@/assets/images/listen_free.png";
 import ICON_BOOK from "@/assets/images/book.png";
 import ICON_CONSULT from "@/assets/images/service1.png";
 import ICON_VIDEO_CONSULT from "@/assets/images/service2.png";
+import ICON_SEARCH from "@/assets/images/icon_search.png";
+import ICON_BEQUESTIONED from "@/assets/images/icon_bequestioned.png";
+import ICON_STARTED from "@/assets/images/icon_started.png";
+import ICON_CONSULTATION from "@/assets/images/icon_consultation.png";
+import ICON_APPOINTMENT from "@/assets/images/icon_appointment.png";
+import ICON_RECOMMEND from "@/assets/images/icon_recommend.png";
+import ICON_FOCUSED from "@/assets/images/icon_focused.png";
+
+import config from "./config";
 
 const { imgHost } = config;
 
@@ -54,6 +62,7 @@ const images = {
   ICON_DOCTOR_EMPTY,
   ICON_ONLINE_SERVICE_EN,
   ICON_TEL_EN,
+  ICON_SEARCH,
   /** ---------------优惠券--------------- **/
   ICON_SHARE,
   ICON_SHARE_GRAY,
@@ -133,6 +142,12 @@ const images = {
   DISTINCT_SERVICE_FOLLOWUP: `${imgHost}/distinct_service_followup.png`,
   /**------------------诊所相关---------------------**/
   DISTINCT_CLINIC_PIN: `${imgHost}/pin.png`,
-  DISTINCT_SERVICE_CONSULT: `${imgHost}/distinct_service_consult.png`
+  DISTINCT_SERVICE_CONSULT: `${imgHost}/distinct_service_consult.png`,
+  ICON_BEQUESTIONED,
+  ICON_STARTED,
+  ICON_CONSULTATION,
+  ICON_APPOINTMENT,
+  ICON_RECOMMEND,
+  ICON_FOCUSED
 };
 export default images;
