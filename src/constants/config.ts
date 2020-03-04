@@ -2,6 +2,8 @@ export default {
   platformName: "distinct_healthcare",
   payAmount: 3000,
   language: "CN",
+  host: "https://dev.distinctclinic.com",
+  imgHost: "https://file-storage.distinctclinic.com/miniapp/static",
   shareConfig: {
     title: "卓正医疗",
     path: "/pages/index",

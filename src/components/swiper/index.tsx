@@ -31,7 +31,11 @@ interface SwiperComponent {
 
 class SwiperComponent extends Component {
   static defaultProps = {
-    source: []
+    source: [],
+    autoplay: true,
+    interval: 3000,
+    duration: 800,
+    circular: false
   };
 
   render() {
