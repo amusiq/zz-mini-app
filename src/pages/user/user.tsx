@@ -1,6 +1,6 @@
 import { ComponentType } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Image, Text } from "@tarojs/components";
+import { View, Image, Block, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
 import { imagesConfig } from "@/constants";
 
@@ -54,39 +54,41 @@ class User extends Component {
     // } = this.props;
     const language = "CN";
     const myOrderCategoryList = [];
+    const userRelationConfigs = [];
     const followUpPeddingNumbers = 0;
     const loginInfo = {};
     const totalCount = 0;
     return (
-      <View className="user-container">
-        <View className="weui-flex userInfoBlock" onClick={this.editUserInfo}>
-          <Image
-            className="userImage"
-            src={
-              loginInfo.photoLink
-                ? loginInfo.photoLink
-                : imagesConfig.DISTINCT_USER_COMMON
-            }
-          />
-          <Text
-            className={
-              loginInfo.nickname ? "zz-text__bigger_title" : "zz-input__tips"
-            }
-          >
-            {loginInfo.nickname ? loginInfo.nickname : "请填写昵称"}
-          </Text>
-          <View className="rightView weui-flex">
-            <Image className="arrow" src={imagesConfig.RIGHT_ARROW} />
-          </View>
-        </View>
-        {language === "CN" && (
-          <View className="myOrderBlock">
-            <View className="zz-common-title zz-main__text">
-              <View className="zz-vertical-line" />
-              我的订单
+      <Block>
+        <View className="user-container">
+          <View className="weui-flex userInfoBlock" onClick={this.editUserInfo}>
+            <Image
+              className="userImage"
+              src={
+                loginInfo.photoLink
+                  ? loginInfo.photoLink
+                  : imagesConfig.DISTINCT_USER_COMMON
+              }
+            />
+            <Text
+              className={
+                loginInfo.nickname ? "zz-text__bigger_title" : "zz-input__tips"
+              }
+            >
+              {loginInfo.nickname ? loginInfo.nickname : "请填写昵称"}
+            </Text>
+            <View className="rightView weui-flex">
+              <Image className="arrow" src={imagesConfig.RIGHT_ARROW} />
             </View>
-            <View className="weui-flex categoryBlock">
-              {/* {myOrderCategoryList.map(item => {
+          </View>
+          {language === "CN" && (
+            <View className="myOrderBlock">
+              <View className="zz-common-title zz-main__text">
+                <View className="zz-vertical-line" />
+                我的订单
+              </View>
+              <View className="weui-flex categoryBlock">
+                {/* {myOrderCategoryList.map(item => {
                 <View key="index">
                   <View
                     className={`orderCategoryItem weui-flex ${
@@ -104,10 +106,21 @@ class User extends Component {
                   </View>
                 </View>;
               })} */}
+              </View>
             </View>
-          </View>
-        )}
-      </View>
+          )}
+        </View>
+        <View className="personalFileBlock">
+          {userRelationConfigs.map((sectionItem, idx) => (
+            <View key={`${idx}`} className="section">
+              {sectionItem.length > 0 &&
+                sectionItem.map(menuItem => (
+                  <CustomMenu itemInfo={menuItem} menuClick={this.menuClick} />
+                ))}
+            </View>
+          ))}
+        </View>
+      </Block>
     );
   }
 }
