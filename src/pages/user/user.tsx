@@ -1,8 +1,8 @@
-import { ComponentType } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, Image, Block, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import { imagesConfig } from "@/constants";
+import { CustomMenu } from "@/components";
+import { config, appConfig, imagesConfig } from "@/constants";
 
 import "./user.scss";
 
@@ -36,12 +36,6 @@ class User extends Component {
 
   componentDidMount() {}
 
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
   editUserInfo = () => {};
 
   menuClick = key => {
@@ -52,9 +46,14 @@ class User extends Component {
     // const {
     //   userStore: { counter }
     // } = this.props;
-    const language = "CN";
-    const myOrderCategoryList = [];
-    const userRelationConfigs = [];
+    const { language } = config;
+    const {
+      myOrderCategoryList,
+      userRelationConfigs_CN,
+      userRelationConfigs_EN
+    } = appConfig;
+    const userRelationConfigs =
+      language === "CN" ? userRelationConfigs_CN : userRelationConfigs_EN;
     const followUpPeddingNumbers = 0;
     const loginInfo = {};
     const totalCount = 0;
@@ -88,24 +87,27 @@ class User extends Component {
                 我的订单
               </View>
               <View className="weui-flex categoryBlock">
-                {/* {myOrderCategoryList.map(item => {
-                <View key="index">
-                  <View
-                    className={`orderCategoryItem weui-flex ${
-                      totalCount > 0 ? "" : "noFollowUpItem"
-                    }`}
-                    onClick={() => this.menuClick(item.key)}
-                  >
-                    <Image className="categoryIcon" src={item.icon} />
-                    <Text className="zz-text__second_title">{item.title}</Text>
-                    {item.key === "followup" && followUpPeddingNumbers > 0 && (
-                      <Text className="redNumber">
-                        {followUpPeddingNumbers}
+                {myOrderCategoryList.map((item, index) => (
+                  <View key={`${index}`}>
+                    <View
+                      className={`orderCategoryItem weui-flex ${
+                        totalCount > 0 ? "" : "noFollowUpItem"
+                      }`}
+                      onClick={() => this.menuClick(item.key)}
+                    >
+                      <Image className="categoryIcon" src={item.icon} />
+                      <Text className="zz-text__second_title">
+                        {item.title}
                       </Text>
-                    )}
+                      {item.key === "followup" &&
+                        followUpPeddingNumbers > 0 && (
+                          <Text className="redNumber">
+                            {followUpPeddingNumbers}
+                          </Text>
+                        )}
+                    </View>
                   </View>
-                </View>;
-              })} */}
+                ))}
               </View>
             </View>
           )}
@@ -115,7 +117,11 @@ class User extends Component {
             <View key={`${idx}`} className="section">
               {sectionItem.length > 0 &&
                 sectionItem.map(menuItem => (
-                  <CustomMenu itemInfo={menuItem} menuClick={this.menuClick} />
+                  <CustomMenu
+                    key={menuItem.key}
+                    itemInfo={menuItem}
+                    menuClick={this.menuClick}
+                  />
                 ))}
             </View>
           ))}
@@ -125,4 +131,4 @@ class User extends Component {
   }
 }
 
-export default User as ComponentType;
+export default User;
