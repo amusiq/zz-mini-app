@@ -4,7 +4,6 @@ import userAutoLogin from "@/utils/userAutoLogin";
 import Index from "./pages/index/index";
 
 import store from "@/store";
-
 import "./app.scss";
 
 const { commonStore } = store;
