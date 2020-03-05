@@ -1,6 +1,7 @@
 import Taro, { Component, Config } from "@tarojs/taro";
 import { Provider } from "@tarojs/mobx";
 import Index from "./pages/index/index";
+import { routeConfig } from "@/constants";
 import userAutoLogin from "@/utils/userAutoLogin";
 
 import store from "@/store";
@@ -8,6 +9,8 @@ import store from "@/store";
 import "./app.scss";
 
 const { commonStore } = store;
+console.log(routeConfig, "pages");
+const { pages } = routeConfig;
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -34,7 +37,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "WeChat",
+      navigationBarTitleText: "卓正医疗",
       navigationBarTextStyle: "black"
     },
     tabBar: {
@@ -72,9 +75,9 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    this.userAutoLogin();
     await commonStore.getCityList();
     commonStore.getCurrentCityInfo();
-    this.userAutoLogin();
     commonStore.updateAppConfig();
   }
 
