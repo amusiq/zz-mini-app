@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 const userStore = observable({
-  counter: 0,
+  isLogin: false,
   counterStore() {
     this.counter++;
   },

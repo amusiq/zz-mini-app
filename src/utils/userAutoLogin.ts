@@ -38,18 +38,19 @@ export default {
   // 自动登录
   async autoLogin() {
     const body = { code: "", deviceInfo: {}, networkType: "" };
-    const deviceInfo = {};
 
     const systemInfo = Taro.getSystemInfoSync();
     const wxLogin = await Taro.login();
     const network = await Taro.getNetworkType();
-
+    const { brand, model, system, version, SDKVersion } = systemInfo;
     body.code = wxLogin.code || "";
-    deviceInfo.brand = systemInfo.brand || "";
-    deviceInfo.model = systemInfo.model || "";
-    deviceInfo.system = systemInfo.system || "";
-    deviceInfo.version = systemInfo.version || "";
-    deviceInfo.SDKVersion = systemInfo.SDKVersion || "";
+    const deviceInfo = {
+      brand: brand || "",
+      model: model || "",
+      system: system || "",
+      version: version || "",
+      SDKVersion: SDKVersion || ""
+    };
     body.deviceInfo = JSON.stringify(deviceInfo);
     body.networkType = network.networkType || "";
     const autoLoginResult = await request.loginHttpPost({

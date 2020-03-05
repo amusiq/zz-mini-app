@@ -18,7 +18,6 @@ import language from "./language";
  * key: menu的key值（唯一），可用来做跳转
  */
 export default {
-  systemInfo: {}, // 系统信息
   customerServicePhone: "400-822-0909",
   app: "distinct_healthcare",
   client: "mini_app",

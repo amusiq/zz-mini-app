@@ -1,6 +1,7 @@
 import Taro, { Component, Config } from "@tarojs/taro";
 import { Provider } from "@tarojs/mobx";
 import Index from "./pages/index/index";
+import userAutoLogin from "@/utils/userAutoLogin";
 
 import store from "@/store";
 
@@ -73,6 +74,16 @@ class App extends Component {
   async componentDidMount() {
     await commonStore.getCityList();
     commonStore.getCurrentCityInfo();
+    this.userAutoLogin();
+    commonStore.updateAppConfig();
+  }
+
+  // 用户静默登录，更新微信用户信息
+  async userAutoLogin() {
+    const autoLoginRes = await userAutoLogin.autoLogin();
+    if (autoLoginRes.data) {
+      await userAutoLogin.updateUserInfo();
+    }
   }
 
   componentDidShow() {}
