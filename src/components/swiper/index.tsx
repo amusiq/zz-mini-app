@@ -58,6 +58,7 @@ class SwiperComponent extends Component {
           circular={circular}
           indicatorColor="rgba(255,255,255,.5)"
           indicatorActiveColor="#fff"
+          style={{ height: Taro.pxTransform(300) }}
         >
           {source.map(item => (
             <SwiperItem key={item.picture}>
@@ -65,7 +66,7 @@ class SwiperComponent extends Component {
                 className="swiper__slide-image"
                 src={item.picture}
                 mode="aspectFill"
-                lazy-load
+                lazyLoad
               />
               {!!item.title && (
                 <View className="swiper__text-box">
