@@ -31,21 +31,21 @@ class Discovery extends Component {
     navigationBarTitleText: "发现"
   };
 
-  componentWillMount() {
+  componentWillReact() {}
+
+  componentDidMount() {
     const { discoveryStore } = this.props;
     discoveryStore.getBanners();
     discoveryStore.getArticleInfo(true);
   }
 
-  componentWillReact() {
-    console.log("componentWillReact");
-  }
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
   turnToSearch = () => {};
+
+  // 滑动底部加载
+  onReachBottom() {
+    const { discoveryStore } = this.props;
+    discoveryStore.getArticleInfo();
+  }
 
   render() {
     const {
