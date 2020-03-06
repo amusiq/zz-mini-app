@@ -3,6 +3,7 @@ import { View, Image, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
 import { imagesConfig } from "@/constants";
 import { SearchInput, SwiperComponent } from "@/components";
+import { navTo } from "@/tools";
 
 import "./index.scss";
 
@@ -34,7 +35,7 @@ class Index extends Component {
   }
 
   onClickSearchInput = () => {
-    console.log("onClickSearchInput");
+    navTo({ target: "doctorSearch" });
   };
 
   init = () => {

@@ -6,28 +6,28 @@ import { SearchInput, IconFont } from "@/components";
 import "./index.scss";
 
 type propsType = {
-  value: string
-  placeholder: string
-  disabled: boolean
-  maxLength: number
-  onInput: Function
-  onFocus: Function
-  onBlur: Function
-  onConfirm: Function
-  onClick: Function
+  value: string;
+  placeholder: string;
+  disabled: boolean;
+  maxLength: number;
+  onInput: Function;
+  onFocus: Function;
+  onBlur: Function;
+  onConfirm: Function;
+  onClick: Function;
 };
 
 type stateType = {};
 
 interface SearchInput {
-  props: propsType
-  state: stateType
+  props: propsType;
+  state: stateType;
 }
 
 class SearchInput extends Component {
   static defaultProps = {
-    value: '',
-    placeholder: '',
+    value: "",
+    placeholder: "",
     disabled: false,
     maxLength: 500,
     onInput: () => {},
@@ -37,37 +37,45 @@ class SearchInput extends Component {
     onClick: () => {}
   };
 
-  handleInput = (e) =>{
-    this.props.onInput(e.detail.value)
-  }
+  handleInput = e => {
+    this.props.onInput(e.detail.value);
+  };
   handleClear = () => {
-    this.props.onInput('');
-  }
+    this.props.onInput("");
+  };
 
   render() {
-    const { value, placeholder, disabled, maxLength ,onClick, onConfirm, onFocus, onBlur } = this.props;
+    const {
+      value,
+      placeholder,
+      disabled,
+      maxLength,
+      onClick,
+      onConfirm,
+      onFocus,
+      onBlur
+    } = this.props;
     return (
-      <View className='search-input' onClick={onClick}>
-        <IconFont type='search' />
-        <Input 
-          className='search-input__input' 
-          value={value} 
-          type='text' 
-          placeholder={placeholder} 
-          placeholderClass='search-input__placeholder' 
-          onInput={this.handleInput} 
-          onConfirm={onConfirm} 
-          onFocus={onFocus} 
-          onBlur={onBlur} 
-          disabled={disabled} 
+      <View className="search-input" onClick={onClick}>
+        <IconFont type="search" />
+        <Input
+          className="search-input__input"
+          value={value}
+          type="text"
+          placeholder={placeholder}
+          placeholderClass="search-input__placeholder"
+          onInput={this.handleInput}
+          onConfirm={onConfirm}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          disabled={disabled}
           maxLength={maxLength}
         />
-        {!!value && 
+        {!!value && (
           <View onClick={this.handleClear}>
-            <IconFont type='roundclosefill' size='15' color='#D8D8D8' />
+            <IconFont type="roundclosefill" size="15" color="#D8D8D8" />
           </View>
-        }
-        
+        )}
       </View>
     );
   }

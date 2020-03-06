@@ -65,6 +65,12 @@ class App extends Component {
         }
       ]
     },
+    subPackages: [
+      {
+        root: "doctor",
+        pages: ["doctorSearch/doctorSearch"]
+      }
+    ],
     permission: {
       "scope.userLocation": {
         desc: "为您匹配对应城市的卓正服务。"

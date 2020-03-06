@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import router, { TAB_PAGE } from "@/constants/routerConfig";
+import route, { TAB_PAGE } from "@/constants/routeConfig";
 
 const NAV_TYPE = [
   "switchTab",
@@ -14,10 +14,10 @@ export default function navTo({
   params = {},
   navType = "navigateTo"
 }) {
-  if (!(target in router)) {
-    throw new Error(`please define ${target} in routerConfig.ts`);
+  if (!(target in route)) {
+    throw new Error(`please define ${target} in routeConfig.ts`);
   }
-  let url = `/${router[target]}`;
+  let url = `/${route[target]}`;
   if (target in TAB_PAGE && navType === "navigateTo") navType = "switchTab";
   if (NAV_TYPE.includes(navType)) {
     if (Object.keys(params).length !== 0) {
