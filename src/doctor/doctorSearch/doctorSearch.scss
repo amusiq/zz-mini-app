@@ -1,0 +1,81 @@
+.doctor-search-container {
+  .searchBlock {
+    background: #ffffff;
+    padding: 20rpx 30rpx;
+    .searchContainerItem {
+      width: 100%;
+      align-items: center;
+      padding: 20rpx 30rpx;
+      background: #f5f7f7;
+      border-radius: 10rpx;
+      .searchImageStyle {
+        width: 33rpx;
+        height: 35rpx;
+      }
+      .searchTextStyle {
+        width: 100%;
+        color: #aab5b6;
+        font-size: 26rpx;
+        margin-left: 20rpx;
+      }
+    }
+  }
+  .doctorListBlock {
+    background-color: #fff;
+    .doctorItem {
+      padding: 30rpx;
+      .doctorInfo {
+        align-items: center;
+        .doctorImage {
+          width: 60rpx;
+          height: 60rpx;
+          border-radius: 100%;
+          margin-right: 20rpx;
+        }
+        .cityView {
+          flex: 1;
+          align-items: center;
+          justify-content: flex-end;
+          .iconLocation {
+            width: 28rpx;
+            height: 28rpx;
+            margin-right: 8rpx;
+          }
+        }
+      }
+      .serviceBlock {
+        padding: 0rpx 0rpx 20rpx 80rpx;
+        .serviceInfoText {
+          background-color: #f5f7f7;
+          color: #0a434d;
+          font-size: 20rpx;
+          line-height: 30rpx;
+          border-radius: 18rpx;
+          padding: 5rpx 15rpx;
+          margin-right: 10rpx;
+          margin-top: 10rpx;
+        }
+      }
+      .introductionBlock {
+        padding-left: 80rpx;
+        padding-bottom: 20rpx;
+      }
+      .tagBlock {
+        padding-left: 80rpx;
+        .tagInfoText {
+          color: #849ca0;
+          font-size: 20rpx;
+          border: 1px solid #c3cfd1;
+          line-height: 30rpx;
+          border-radius: 18rpx;
+          padding: 5rpx 15rpx;
+          margin-right: 10rpx;
+          margin-top: 10rpx;
+        }
+      }
+    }
+  }
+  .emptyContainer {
+    margin-top: 15%;
+  }
+}

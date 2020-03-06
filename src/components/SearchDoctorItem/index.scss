@@ -1,0 +1,59 @@
+.seperateLine {
+  border-bottom: 1px solid rgba(10, 67, 77, 0.1);
+  margin-left: 30px;
+}
+.doctorItem {
+  padding: 30px 30px 30px 0px;
+  .doctorInfo {
+    align-items: center;
+    .doctorImage {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      margin-right: 20px;
+    }
+    .doctorName {
+      max-width: 422px;
+    }
+    .cityView {
+      flex: 1;
+      align-items: center;
+      justify-content: flex-end;
+      .iconLocation {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+      }
+    }
+  }
+  .serviceBlock {
+    padding: 0px 0px 20px 80px;
+    .serviceInfoText {
+      background-color: #f5f7f7;
+      color: #0a434d;
+      font-size: 20px;
+      line-height: 30px;
+      border-radius: 18px;
+      padding: 5px 15px;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+  }
+  .introductionBlock {
+    padding-left: 80px;
+    padding-bottom: 20px;
+  }
+  .tagBlock {
+    padding-left: 80px;
+    .tagInfoText {
+      color: #849ca0;
+      font-size: 20px;
+      border: 1px solid #c3cfd1;
+      line-height: 30px;
+      border-radius: 18px;
+      padding: 5px 15px;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+  }
+}

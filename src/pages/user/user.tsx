@@ -54,7 +54,7 @@ class User extends Component {
       language === "CN" ? userRelationConfigs_CN : userRelationConfigs_EN;
     const followUpPeddingNumbers = 0;
     const totalCount = 0;
-    console.log(loginInfo, "loginInfo");
+    console.log(myOrderCategoryList, "myOrderCategoryList");
     return (
       <Block>
         <View className="user-container">

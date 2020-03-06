@@ -1,0 +1,17 @@
+.emptyView {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .emptyImg {
+    width: 128px;
+    height: 183px;
+  }
+  .emptyTips {
+    font-size: 26px;
+    color: #aab5b6;
+    margin-top: 20px;
+    text-align: center;
+    align-self: center;
+  }
+}

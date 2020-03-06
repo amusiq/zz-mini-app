@@ -1,7 +1,6 @@
 import Taro from "@tarojs/taro";
 import { observable } from "mobx";
-import { api, appConfig } from "@/constants";
-import request from "@/utils/request";
+import { appConfig } from "@/constants";
 import { commonTool, locationTool } from "@/tools";
 
 const commonStore = observable({

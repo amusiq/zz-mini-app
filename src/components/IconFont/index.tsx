@@ -11,11 +11,8 @@ type propsType = {
   size: string;
 };
 
-type stateType = {};
-
 interface IconFont {
   props: propsType;
-  state: stateType;
 }
 
 class IconFont extends Component {
