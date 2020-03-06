@@ -8,9 +8,7 @@ import "./user.scss";
 
 type PageStateProps = {
   userStore: {
-    counter: number;
-    increment: Function;
-    decrement: Function;
+    loginInfo: object;
     incrementAsync: Function;
   };
 };
@@ -43,9 +41,9 @@ class User extends Component {
   };
 
   render() {
-    // const {
-    //   userStore: { counter }
-    // } = this.props;
+    const {
+      userStore: { loginInfo }
+    } = this.props;
     const { language } = config;
     const {
       myOrderCategoryList,
@@ -55,8 +53,8 @@ class User extends Component {
     const userRelationConfigs =
       language === "CN" ? userRelationConfigs_CN : userRelationConfigs_EN;
     const followUpPeddingNumbers = 0;
-    const loginInfo = {};
     const totalCount = 0;
+    console.log(loginInfo, "loginInfo");
     return (
       <Block>
         <View className="user-container">

@@ -1,9 +1,18 @@
 import { ComponentType } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Block, Text,Image, Swiper, SwiperItem, WebView, Button } from "@tarojs/components";
+import {
+  View,
+  Block,
+  Text,
+  Image,
+  Swiper,
+  SwiperItem,
+  WebView,
+  Button
+} from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import {config, imagesConfig} from '@/constants';
-import {ConsultItem,FollowupItem,RecommendDoctor} from '@/components'
+import { config, imagesConfig,routeConfig } from "@/constants";
+import { ConsultItem, FollowupItem, RecommendDoctor } from "@/components";
 
 import "./consultOnline.scss";
 
@@ -33,31 +42,41 @@ class ConsultOnline extends Component {
 
   componentDidMount() {}
 
-  componentWillUnmount() {}
+  onShareAppMessage() {
+    return {
+        title: '卓正医疗线上问诊',
+        path: routeConfig.consultOnline,
+        success: res => {
+            console.log('转发成功', res)
+        },
+        fail: res => {
+            console.log('转发失败', res)
+        }
+    }
+}
 
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  navigateTabItemDetail=()=>{}
+  navigateTabItemDetail = () => {};
 
   render() {
     const {
       consultOnlineStore: { counter }
     } = this.props;
-    const {language}=config;
-    const tabList =[];
+    const { language } = config;
+    const tabList = [];
     const isShowConsultingBlock = false;
     const selectedSubList = [];
-    const aboutUrl = 'https://mp.weixin.qq.com/s/9iIFqLqtk0oKwYWv-W1h1w';
-    const bannerUrl = 'https://file-storage.distinctclinic.com/miniapp/static/icon_consultation.png';
-    const selectType= '';
-    const currentScrollIndex= 0;
-    const departmentsList =[];
-    const isShowMenu =false;
-    const isDuringServiceTime ='';
-    return <Block>
-      {(language === 'EN' || language === 'en')?<WebView src={aboutUrl} />:(
+    const aboutUrl = "https://mp.weixin.qq.com/s/9iIFqLqtk0oKwYWv-W1h1w";
+    const bannerUrl =
+      "https://file-storage.distinctclinic.com/miniapp/static/icon_consultation.png";
+    const selectType = "";
+    const currentScrollIndex = 0;
+    const departmentsList = [];
+    const isShowMenu = false;
+    const isDuringServiceTime = "";
+    const isEn = ['EN','en'].includes(language);
+    return (
+      <Block>
+        {isEn?<WebView src={aboutUrl} />:(
       <View>
         <View className="imageContainer">
             <View className="justify-align-center searchFloateContainer" onClick={this.onClickSearch}>
@@ -115,7 +134,8 @@ class ConsultOnline extends Component {
         </View>
         <View className="ripple rippleStyler" />
     </View>)}
-</Block>;
+      </Block>
+    );
   }
 }
 

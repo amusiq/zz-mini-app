@@ -1,16 +1,20 @@
 import { observable } from "mobx";
+import userAutoLogin from "@/utils/userAutoLogin";
 
 const userStore = observable({
+  loginInfo: {},
   isLogin: false,
-  counterStore() {
-    this.counter++;
+
+  // 用户静默登录，更新微信用户信息
+  async userAutoLogin() {
+    const autoLoginRes = await userAutoLogin.autoLogin();
+    if (autoLoginRes.data) {
+      this.loginInfo = autoLoginRes.data;
+      this.isLogin = true;
+      await userAutoLogin.updateUserInfo(autoLoginRes.data);
+    }
   },
-  increment() {
-    this.counter++;
-  },
-  decrement() {
-    this.counter--;
-  },
+
   incrementAsync() {
     setTimeout(() => {
       this.counter++;

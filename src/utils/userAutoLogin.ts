@@ -59,15 +59,11 @@ export default {
       header: { "content-type": "application/json", isNeedTokenInBody: false }
     });
     console.log("自动登录返回结果", autoLoginResult);
-    if (autoLoginResult.data) {
-      Taro.setStorageSync("loginInfo", autoLoginResult.data);
-      //    userHook.emit('autoLogin', autoLoginResult.data);
-    }
     return autoLoginResult;
   },
 
   // 更新微信用户信息
-  async updateUserInfo() {
+  async updateUserInfo(loginInfo) {
     const authSettingRes = await Taro.getSetting();
     const authSetting = authSettingRes.authSetting || {};
     const authUserInfo = authSetting["scope.userInfo"] || false;
@@ -75,7 +71,6 @@ export default {
       return; // 没有相关权限，无法获取微信用户信息
     }
 
-    const loginInfo = Taro.getStorageSync("loginInfo");
     const authToken = loginInfo.authToken || "";
     if (!authToken || authToken.length === 0) {
       return; // 未登录状态，无法获取微信用户信息

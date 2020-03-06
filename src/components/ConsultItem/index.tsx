@@ -50,7 +50,7 @@ class ConsultItem extends Component {
       <View onClick={() => navigateTo(item)} className="weui-flex consult-item">
         <Image
           className="doctorImg"
-          src="{{item.doctor ? item.doctor.imageUrl : ''}}"
+          src={item.doctor ? item.doctor.imageUrl : ""}
         />
         <View className="weui-flex doctorInfoContainer">
           <View className="weui-flex doctorInfoNameService">

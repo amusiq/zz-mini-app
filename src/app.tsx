@@ -1,12 +1,10 @@
 import Taro, { Component, Config } from "@tarojs/taro";
 import { Provider } from "@tarojs/mobx";
-import userAutoLogin from "@/utils/userAutoLogin";
-import Index from "./pages/index/index";
-
 import store from "@/store";
+import Index from "./pages/index/index";
 import "./app.scss";
 
-const { commonStore } = store;
+const { commonStore, userStore } = store;
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -70,18 +68,10 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    this.userAutoLogin();
+    userStore.userAutoLogin();
     await commonStore.getCityList();
     commonStore.getCurrentCityInfo();
     commonStore.updateAppConfig();
-  }
-
-  // 用户静默登录，更新微信用户信息
-  async userAutoLogin() {
-    const autoLoginRes = await userAutoLogin.autoLogin();
-    if (autoLoginRes.data) {
-      await userAutoLogin.updateUserInfo();
-    }
   }
 
   componentDidShow() {}
