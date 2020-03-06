@@ -136,9 +136,9 @@ export default {
   },
   async _isDuringServiceTime() {
     try {
-      const serviceResult = await request.httpGet(
-        config.getApi("customer_services")
-      );
+      const serviceResult = await request.httpGet({
+        url: api.API_CUSTOMER_SERVICES
+      });
       if (serviceResult.code === 0) {
         return serviceResult.data.workStatus === "online";
       } else {
@@ -158,7 +158,7 @@ export default {
   },
   _getSeviceTime() {
     return new Promise((resolve, reject) => {
-      request.httpGet(config.getApi("get_time")).then(res => {
+      request.httpGet({ url: api.API_GET_TIME }).then(res => {
         console.log(res);
         if (res.code === 0) {
           resolve(res.data);

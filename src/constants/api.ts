@@ -14,5 +14,9 @@ export default {
   API_ADVERTISEMENTS_BANNERS: `${host}/app-web2/advertisements/v2/banners`, // 科普轮播广告
   API_POPULAR_SCIENCE_LATEST: `${host}/app-web2/psa/latest`, // 科普最新文章
   API_CITIES: `${host}/app-web2/cities`, // 城市列表
-  API_GET_BY_GEO_CODER: `${host}/app-web2/cities/get_by_geo_coder` // 根据经纬度查城市
+  API_GET_BY_GEO_CODER: `${host}/app-web2/cities/get_by_geo_coder`, // 根据经纬度查城市
+  API_DOCTOR_CONSULTING_FOLLOWUP: `${host}/app-web2/consultations/consultation_index`, // 医生推荐、进行中咨询、随访
+  API_AVAILABLE_SERVICES: `${host}/app-web2/consultations/service_type/available_services`, // 科室
+  API_CUSTOMER_SERVICES: `${host}/app-web2/customer_services/info`, // 获取客服服务信息
+  API_GET_TIME: `${host}/auth-api/auth/get_time`
 };

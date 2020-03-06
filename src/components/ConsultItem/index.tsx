@@ -15,6 +15,7 @@ type propsType = {
       name: string;
     };
     consultType: string;
+    statusName: string;
   };
   navigateTo: Function;
 };

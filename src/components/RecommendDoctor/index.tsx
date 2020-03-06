@@ -6,7 +6,12 @@ import { consultTool } from "@/tools";
 import "./index.scss";
 
 type propsType = {
-  item: object;
+  item: {
+    name: string;
+    serviceName: string;
+    note: string;
+    recommendType: string;
+  };
   navigateTo: Function;
 };
 
@@ -37,7 +42,7 @@ class RecommendDoctor extends Component {
             <Text className="doctorName">{item.name}</Text>
             <Text className="serviceContainer">{item.serviceName}</Text>
           </View>
-          <Text className="consultType">{item.note}</Text>
+          <Text className="consultType ellipse">{item.note}</Text>
         </View>
         <Image
           className="consultStatus"

@@ -64,6 +64,11 @@ class App extends Component {
           selectedIconPath: "./assets/tab-bar/user-active.png"
         }
       ]
+    },
+    permission: {
+      "scope.userLocation": {
+        desc: "为您匹配对应城市的卓正服务。"
+      }
     }
   };
 

@@ -1,5 +1,6 @@
 import Taro from "@tarojs/taro";
 import { config, appConfig } from "@/constants";
+import userStore from "@/store/userStore";
 import userAutoLogin from "./userAutoLogin";
 
 class Request {
@@ -103,10 +104,11 @@ class Request {
     });
   }
 
-  async loginHttpGet(url, data = {}, header = {}) {
-    header = await this.getRequestHeader(header);
+  async loginHttpGet(options) {
+    const { url, data = {}, header = {} } = options;
+    const { loginInfo } = userStore;
+    const newHeader = await this.getRequestHeader(header);
     this.showLoadingFun();
-    const loginInfo = Taro.getStorageSync("loginInfo");
     if (!loginInfo["authToken"]) {
       header["authToken"] = data["authToken"] = "";
     } else {
@@ -116,7 +118,7 @@ class Request {
     return Taro.request({
       url: url,
       data: data,
-      header: header,
+      header: newHeader,
       method: "GET",
       dataType: "json"
     }).then(res => {
@@ -125,18 +127,18 @@ class Request {
         return { code: 0, data: res.data };
       } else {
         if (
-          res.data.code == "3000017" ||
-          res.data.code == "3000025" ||
+          res.data.code === "3000017" ||
+          res.data.code === "3000025" ||
           res.statusCode === 400
         ) {
           return this.notLogin().then(notLoginRes => {
             if (notLoginRes) {
-              return this.loginHttpGet(url, data, header);
+              return this.loginHttpGet({ url, data, header: newHeader });
             } else {
               return false;
             }
           });
-        } else if (res.data.code == "3000040") {
+        } else if (res.data.code === "3000040") {
           return Taro.showModal({
             title: "提示",
             content: res.data.message,
@@ -158,7 +160,7 @@ class Request {
   async loginHttpPut(url, data = {}, header = {}, isNeedTokenInBody = true) {
     header = await this.getRequestHeader(header);
     this.showLoadingFun();
-    const loginInfo = Taro.getStorageSync("loginInfo");
+    const { loginInfo } = userStore;
     if (!loginInfo["authToken"]) {
       header["authToken"] = data["authToken"] = "";
     } else {
@@ -208,7 +210,7 @@ class Request {
       newHeader["content-type"] = "application/x-www-form-urlencoded";
     }
     this.showLoadingFun();
-    const loginInfo = Taro.getStorageSync("loginInfo");
+    const { loginInfo } = userStore;
     if (!loginInfo["authToken"]) {
       // 领券&feedback接口单独处理
       // return this.notLogin(url.indexOf('activities/group') != -1 || url.indexOf('feedback') != -1 ? 'activeGetTicket' : undefined).then(res => {
