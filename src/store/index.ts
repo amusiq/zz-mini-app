@@ -5,6 +5,7 @@ import userStore from "./userStore";
 import discoveryStore from "./discoveryStore";
 import consultOnlineStore from "./consultOnlineStore";
 import doctorSearchStore from "./doctorSearchStore";
+import clinicStore from "./clinicStore";
 
 export default {
   commonStore,
@@ -13,5 +14,6 @@ export default {
   discoveryStore,
   counterStore,
   consultOnlineStore,
-  doctorSearchStore
+  doctorSearchStore,
+  clinicStore
 };

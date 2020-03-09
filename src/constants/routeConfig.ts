@@ -10,7 +10,9 @@ const route = {
   // 主包
   ...TAB_PAGE,
   // 分包 : 医生
-  doctorSearch: "doctor/doctorSearch/doctorSearch" // 医生搜索页
+  doctorSearch: "doctor/doctorSearch/doctorSearch", // 医生搜索页
+  // 分包 : 诊所
+  clinicList: "clinic/clinicList/clinicList" // 医生搜索页
 };
 
 export { TAB_PAGE };

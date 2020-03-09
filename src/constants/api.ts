@@ -19,5 +19,6 @@ export default {
   API_AVAILABLE_SERVICES: `${host}/app-web2/consultations/service_type/available_services`, // 科室
   API_CUSTOMER_SERVICES: `${host}/app-web2/customer_services/info`, // 获取客服服务信息
   API_GET_TIME: `${host}/auth-api/auth/get_time`,
-  API_DOCTORS: `${host}/app-web2/doctors` // 医生列表
+  API_DOCTORS: `${host}/app-web2/doctors`, // 医生列表
+  API_STORES: `${host}/app-web2/stores/v2` // 诊所网点列表
 };

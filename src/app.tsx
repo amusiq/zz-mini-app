@@ -69,6 +69,10 @@ class App extends Component {
       {
         root: "doctor",
         pages: ["doctorSearch/doctorSearch"]
+      },
+      {
+        root: "clinic",
+        pages: ["clinicList/clinicList"]
       }
     ],
     permission: {

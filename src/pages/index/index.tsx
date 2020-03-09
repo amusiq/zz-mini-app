@@ -1,7 +1,7 @@
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, Image, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import { imagesConfig } from "@/constants";
+import { config, imagesConfig } from "@/constants";
 import { SearchInput, SwiperComponent } from "@/components";
 import { navTo } from "@/tools";
 
@@ -44,7 +44,25 @@ class Index extends Component {
   };
 
   menuEvent = index => {
-    console.log(index);
+    if (index === 0) {
+      // 就诊网点
+      navTo({ target: "clinicList" });
+    } else if (index === 1) {
+      // 健康档案
+      navTo({ target: "familyHealthyRecord" });
+      // wepy.navigateTo({
+      //   url: "/pages/healthyRecord/familyHealthyRecord"
+      // });
+    } else if (index === 2) {
+      // 套餐及优惠
+      Taro.navigateToMiniProgram({
+        appId: config.otherAppIds.shop,
+        envVersion: "release",
+        success(res) {
+          console.log(res, "跳转小程序成功");
+        }
+      });
+    }
   };
 
   appointmentEvent = () => {
