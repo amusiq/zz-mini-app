@@ -1,8 +1,8 @@
 import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Image, Input } from "@tarojs/components";
+import { View, Image, Input, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
 import { imagesConfig } from "@/constants";
-import { SearchDoctorItem, EmptyView } from "@/components";
+import { SearchDoctorItem, EmptyView, Modal } from "@/components";
 import { navTo } from "@/tools";
 
 import "./doctorSearch.scss";
@@ -30,7 +30,8 @@ class DoctorSearch extends Component {
 
   state = {
     searchValue: "",
-    showAlert: false
+    showAlert: false,
+    tempId: ""
   };
 
   componentDidMount() {
@@ -47,13 +48,13 @@ class DoctorSearch extends Component {
     this.setState({ searchValue: e.detail.value });
   };
 
-  onReachBottom() {
+  onReachBottom = () => {
     const { searchValue } = this.state;
     const { doctorSearchStore } = this.props;
     if (doctorSearchStore.doctorData.hasNext) {
       doctorSearchStore.getDoctors(searchValue);
     }
-  }
+  };
 
   navigateToUrl = data => {
     if (Taro.getStorageSync("ignoreAppointTip")) {
@@ -61,6 +62,19 @@ class DoctorSearch extends Component {
     } else {
       this.setState({ showAlert: true, tempId: data.id });
     }
+  };
+
+  ignozeBtnClick = () => {
+    const { tempId } = this.state;
+    this.setState({ showAlert: false });
+    Taro.setStorageSync("ignoreAppointTip", true);
+    navTo({ target: "doctorDetail", params: { id: tempId } });
+  };
+
+  goonBtnClick = () => {
+    const { tempId } = this.state;
+    this.setState({ showAlert: false });
+    navTo({ target: "doctorDetail", params: { id: tempId } });
   };
 
   render() {
@@ -71,6 +85,7 @@ class DoctorSearch extends Component {
         isDidLoadData
       }
     } = this.props;
+    const { showAlert } = this.state;
     return (
       <View className="doctor-search-container">
         <View className="weui-flex searchBlock">
@@ -118,6 +133,22 @@ class DoctorSearch extends Component {
             />
           </View>
         )}
+        <Modal
+          isOpened={showAlert}
+          renderTitle={<Text>Tips</Text>}
+          renderContent={
+            <Text>
+              医生可能在不同诊所、科室出诊，请您在提交预约前确认
+              <Text style={{ color: "#006d82", fontWeight: 600 }}>
+                诊所、时间及科室
+              </Text>
+            </Text>
+          }
+          cancelText="不再提醒"
+          confirmText="继续"
+          onConfirm={this.ignozeBtnClick}
+          onCancel={this.goonBtnClick}
+        />
       </View>
     );
   }

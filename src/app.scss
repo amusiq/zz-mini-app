@@ -1,5 +1,7 @@
 @import "./style/common.scss";
 @import "./style/weui.scss";
+@import "./style/custom-theme.scss";
+@import "~taro-ui/dist/style/components/modal.scss";
 
 page {
   color: #333;

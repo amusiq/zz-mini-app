@@ -7,3 +7,4 @@ export { default as FollowupItem } from "./FollowupItem";
 export { default as RecommendDoctor } from "./RecommendDoctor";
 export { default as SearchDoctorItem } from "./SearchDoctorItem";
 export { default as EmptyView } from "./EmptyView";
+export { default as Modal } from "./Modal";
