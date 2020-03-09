@@ -2,8 +2,10 @@ import { ComponentType } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, WebView, Block, Image, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
-import { config, imagesConfig } from "@/constants";
+import { api, config, imagesConfig } from "@/constants";
 import { SearchInput, SwiperComponent } from "@/components";
+import request from "@/utils/request";
+import { navTo } from "@/tools";
 
 import "./discovery.scss";
 
@@ -40,6 +42,15 @@ class Discovery extends Component {
   }
 
   turnToSearch = () => {};
+
+  onClickArticle = data => {
+    const addStr = `link/${data.id}?utmSource=distinct&utmMedium=recommend`;
+    request.loginHttpGet({ url: `${api.API_SCIENCE}/${addStr}` });
+    navTo({
+      target: "webView",
+      params: { type: "article", link: encodeURIComponent(data.link) }
+    });
+  };
 
   // 滑动底部加载
   onReachBottom() {

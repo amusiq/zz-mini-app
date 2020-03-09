@@ -12,7 +12,9 @@ const route = {
   // 分包 : 医生
   doctorSearch: "doctor/doctorSearch/doctorSearch", // 医生搜索页
   // 分包 : 诊所
-  clinicList: "clinic/clinicList/clinicList" // 医生搜索页
+  clinicList: "clinic/clinicList/clinicList", // 医生搜索页
+  // 分包 : 其他
+  webView: "other/webView/webView" // webView
 };
 
 export { TAB_PAGE };
