@@ -1,0 +1,34 @@
+.weui-cell2:before {
+  left: 20px !important;
+  padding: 30px;
+}
+.menuTitle {
+  font-size: 30px;
+  color: #00343d;
+}
+.menuContainer {
+  position: relative;
+  padding: 30px;
+  background-color: #fff;
+  align-items: center;
+  .rightBlock {
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    .arrow {
+      width: 20px;
+      height: 33px;
+    }
+  }
+  .seperateLine {
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(10, 67, 77, 0.1);
+    height: 2px;
+  }
+  .hoverView {
+    background: rgba(240, 240, 240, 1);
+  }
+}

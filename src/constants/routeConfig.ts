@@ -16,7 +16,8 @@ const route = {
   // 分包 : 我的
   userEdit: "user/userEdit/userEdit", // 个人信息修改页
   // 分包 : 其他
-  webView: "other/webView/webView" // webView
+  webView: "other/webView/webView", // webView
+  setting: "other/setting/setting" // 设置
 };
 
 export { TAB_PAGE };

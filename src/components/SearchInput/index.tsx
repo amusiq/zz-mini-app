@@ -73,7 +73,7 @@ class SearchInput extends Component {
         />
         {!!value && (
           <View onClick={this.handleClear}>
-            <IconFont type="roundclosefill" size="15" color="#D8D8D8" />
+            <IconFont type="roundclosefill" size={15} color="#D8D8D8" />
           </View>
         )}
       </View>

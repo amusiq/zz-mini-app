@@ -40,6 +40,9 @@ class User extends Component {
   };
 
   menuClick = key => {
+    if (key === "setting") {
+      navTo({ target: "setting" });
+    }
     console.log(key);
   };
 

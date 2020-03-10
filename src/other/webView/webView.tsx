@@ -2,27 +2,19 @@ import Taro, { Component } from "@tarojs/taro";
 import { View, WebView } from "@tarojs/components";
 import { config } from "@/constants";
 
-type PageStateProps = {
-  discoveryStore: {
-    banners: [];
-    newest: {
-      hasNext: boolean;
-      list: [];
-      limit: number;
-    };
-    getBanners: Function;
-    getArticleInfo: Function;
-  };
+type PageState = {
+  url: string;
 };
 
 interface WebView {
-  props: PageStateProps;
+  state: PageState;
 }
 
 class WebViewPage extends Component {
   state = {
     url: ""
   };
+
   componentDidMount() {
     this.init();
   }

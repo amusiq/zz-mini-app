@@ -8,7 +8,7 @@ import "./index.scss";
 type propsType = {
   type: string;
   color: string;
-  size: string;
+  size: number;
 };
 
 interface IconFont {
@@ -25,7 +25,7 @@ class IconFont extends Component {
   render() {
     const { type, color, size } = this.props;
     const cls = classnames("icon-font", type && `icon-${type}`);
-    const style = { color, fontSize: `${size}px` };
+    const style = { color, fontSize: Taro.pxTransform(size) };
     return <Text className={cls} style={style} />;
   }
 }

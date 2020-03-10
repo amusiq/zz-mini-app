@@ -80,7 +80,7 @@ class App extends Component {
       },
       {
         root: "other",
-        pages: ["webView/webView"]
+        pages: ["webView/webView", "setting/setting"]
       }
     ],
     permission: {
