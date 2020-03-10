@@ -21,5 +21,7 @@ export default {
   API_GET_TIME: `${host}/auth-api/auth/get_time`,
   API_DOCTORS: `${host}/app-web2/doctors`, // 医生列表
   API_STORES: `${host}/app-web2/stores/v2`, // 诊所网点列表
-  API_SCIENCE: `${host}/app-web2/psa` // 科普文章
+  API_SCIENCE: `${host}/app-web2/psa`, // 科普文章
+  API_USER: `${host}/app-web2/users`, // 用户
+  API_UPLOAD_TOKEN: `${host}/app-web2/common/file/uploadToken` // UploadToken
 };

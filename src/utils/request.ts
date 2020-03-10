@@ -157,8 +157,9 @@ class Request {
     });
   }
 
-  async loginHttpPut(url, data = {}, header = {}, isNeedTokenInBody = true) {
-    header = await this.getRequestHeader(header);
+  async loginHttpPut(options) {
+    const { url, data = {}, header = {}, isNeedTokenInBody = true } = options;
+    const newHeader = await this.getRequestHeader(header);
     this.showLoadingFun();
     const { loginInfo } = userStore;
     if (!loginInfo["authToken"]) {
@@ -173,7 +174,7 @@ class Request {
     return Taro.request({
       url: url,
       data: data,
-      header: header,
+      header: newHeader,
       method: "PUT",
       dataType: "json"
     }).then(res => {
@@ -186,7 +187,7 @@ class Request {
         if (res.data.code == "3000017" || res.data.code == "3000025") {
           return this.notLogin().then(notLoginRes => {
             if (notLoginRes) {
-              return this.loginHttpPut(url, data, header);
+              return this.loginHttpPut({ url, data, header });
             } else {
               return false;
             }

@@ -13,6 +13,8 @@ const route = {
   doctorSearch: "doctor/doctorSearch/doctorSearch", // 医生搜索页
   // 分包 : 诊所
   clinicList: "clinic/clinicList/clinicList", // 医生搜索页
+  // 分包 : 我的
+  userEdit: "user/userEdit/userEdit", // 个人信息修改页
   // 分包 : 其他
   webView: "other/webView/webView" // webView
 };

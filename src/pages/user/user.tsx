@@ -3,6 +3,7 @@ import { View, Image, Block, Text } from "@tarojs/components";
 import { observer, inject } from "@tarojs/mobx";
 import { CustomMenu } from "@/components";
 import { config, appConfig, imagesConfig } from "@/constants";
+import { navTo } from "@/tools";
 
 import "./user.scss";
 
@@ -34,7 +35,9 @@ class User extends Component {
 
   componentDidMount() {}
 
-  editUserInfo = () => {};
+  editUserInfo = () => {
+    navTo({ target: "userEdit" });
+  };
 
   menuClick = key => {
     console.log(key);

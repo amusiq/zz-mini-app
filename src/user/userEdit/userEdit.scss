@@ -1,0 +1,36 @@
+.topInfoBlock {
+  background-color: #fff;
+  .userPhotoView {
+    position: relative;
+    padding: 30rpx;
+    align-items: center;
+    justify-content: space-between;
+    .photo {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 100%;
+    }
+  }
+  .nickNameView {
+    padding: 30rpx;
+    align-items: center;
+  }
+}
+.phoneInfoBlock {
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 30rpx;
+  align-items: center;
+}
+.leftTitle {
+  min-width: 90rpx;
+  margin-right: 60rpx;
+}
+.confirmButton {
+  background-color: #006f83;
+  color: #fff;
+  width: 690rpx;
+  button::after {
+    border: none;
+  }
+}

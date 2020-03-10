@@ -75,6 +75,10 @@ class App extends Component {
         pages: ["clinicList/clinicList"]
       },
       {
+        root: "user",
+        pages: ["userEdit/userEdit"]
+      },
+      {
         root: "other",
         pages: ["webView/webView"]
       }
